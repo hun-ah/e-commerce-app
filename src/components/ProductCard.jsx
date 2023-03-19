@@ -4,9 +4,14 @@ const StyledProductCard = styled.div`
    flex-direction: column;
    font-family: 'Poppins', sans-serif;
    font-size: 14px;
-   height: 480px;
-   width: 330px;
+   height: 500px;
+   width: 350px;
+   margin-bottom: 10px;
    cursor: pointer;
+
+   @media screen and (max-width: 1500px){
+      width: 24%;
+   }
 `
 
 const ProductImg = styled.div`

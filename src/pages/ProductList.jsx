@@ -5,9 +5,20 @@ import ProductCard from '../components/ProductCard'
 import Spacer from "../components/Spacer"
 import { productList } from "../data/productList"
 
+const Container = styled.div`
+   width: 100%;
+   min-height: 100vh;
+   display: flex;
+   justify-content: center;
+`
+
 const ProductSection = styled.section`
    display: flex;
    flex-direction: column;
+
+   @media screen and (min-width: 1500px){
+      width: 1500px;
+   }
 `
 
 const HeadingText = styled.h1`
@@ -22,7 +33,7 @@ const Filters = styled.div`
    align-items: center;
    width: 100%;
    height: 30px;
-   padding: 0 20px;
+   padding: 0 10px 0 20px ;
    margin: 20px 0;
 `
 
@@ -45,9 +56,8 @@ const Option = styled.option`
 const Products = styled.div`
    display: flex;
    flex-wrap: wrap;
-   gap: 24px;
+   justify-content: space-between;
    padding: 20px 20px;
-   margin-bottom: 40px;
    width: 100%;
 `
 
@@ -57,53 +67,57 @@ const products = productList.map(obj => {
 
 const ProductList = () => {
    return (
-      <div>
+      <>
          <NavBar />
          <Spacer />
-         <HeadingText>All The Clothes — Thoughtfully designed, exceptionally made everything. Welcome to Everyday Luxury.</HeadingText>
-         <ProductSection>
-            <Filters>
-               <Filter>
-                  Filter By:
-                  <Select>
-                     <Option disabled selected>
-                        Category
-                     </Option>
-                     <Option>Bottoms</Option>
-                     <Option>Tops</Option>
-                     <Option>Dresses</Option>
-                     <Option>Bodysuits</Option>
-                     <Option>Jackets</Option>
-                     <Option>Shoes</Option>
-                     <Option>Accessories</Option>
-                  </Select>
-                  <Select>
-                     <Option disabled selected>
-                        Size
-                     </Option>
-                     <Option>XS</Option>
-                     <Option>S</Option>
-                     <Option>M</Option>
-                     <Option>L</Option>
-                     <Option>XL</Option>
-                     <Option>XXL</Option>
-                  </Select>
-               </Filter>
-               <Filter>
-                  Sort By:
-                  <Select>
-                     <Option selected>Newest</Option>
-                     <Option>Price, high to low</Option>
-                     <Option>Price, low to high</Option>
-                  </Select>
-               </Filter>
-            </Filters>
-            <Products>
-               {products}
-            </Products>
-         </ProductSection>
+         <Container>
+
+            <ProductSection>
+               <HeadingText>All The Clothes — Thoughtfully designed, exceptionally made everything. Welcome to Everyday Luxury.</HeadingText>
+               <Filters>
+                  <Filter>
+                     Filter By:
+                     <Select>
+                        <Option disabled selected>
+                           Category
+                        </Option>
+                        <Option>Bottoms</Option>
+                        <Option>Tops</Option>
+                        <Option>Dresses</Option>
+                        <Option>Bodysuits</Option>
+                        <Option>Jackets</Option>
+                        <Option>Shoes</Option>
+                        <Option>Accessories</Option>
+                     </Select>
+                     <Select>
+                        <Option disabled selected>
+                           Size
+                        </Option>
+                        <Option>XS</Option>
+                        <Option>S</Option>
+                        <Option>M</Option>
+                        <Option>L</Option>
+                        <Option>XL</Option>
+                        <Option>XXL</Option>
+                     </Select>
+                  </Filter>
+                  <Filter>
+                     Sort By:
+                     <Select>
+                        <Option selected>Newest</Option>
+                        <Option>Price, high to low</Option>
+                        <Option>Price, low to high</Option>
+                     </Select>
+                  </Filter>
+               </Filters>
+               <Products>
+                  {products}
+                  {products}
+               </Products>
+            </ProductSection>
+         </Container>
          <Footer />
-      </div>
+      </>
    )
 }
 

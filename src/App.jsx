@@ -5,9 +5,9 @@ import Product from "./pages/Product";
 function App() {
   return (
     <div>
-      <Homepage />
+      {/* <Homepage /> */}
       {/* <ProductList /> */}
-      {/* <Product /> */}
+      <Product />
     </div>
   );
 }
