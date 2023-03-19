@@ -12,7 +12,6 @@ const Container = styled.div`
 `
 
 const SliderContainer = styled.section`
-border: 2px solid red;
    font-family: 'Poppins', sans-serif;
    height: 600px;
    display: flex;
@@ -34,18 +33,21 @@ border: 2px solid red;
 `
 
 const Slider = styled.div`
-border: 2px solid purple;
    display: flex;
    margin: 40px 0;
    font-size: 14px;
    width: 100%;
    gap: 20px;
-   transform: translateX(${({ slideIndex }) => slideIndex * -28}vw);
+   transform: translateX(${({ slideIndex }) => slideIndex * -28}%);
    transition: all 1s;
 
    &::-webkit-scrollbar{
       display: none;
    }
+
+    @media screen and (min-width: 1500px){
+      transform: translateX(${({ slideIndex }) => slideIndex * -25}%);
+      }
 `
 
 const Arrow = styled.div`
