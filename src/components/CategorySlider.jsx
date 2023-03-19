@@ -32,7 +32,6 @@ border: 2px solid red;
       width: 1500px;
    }
 `
-// test
 
 const Slider = styled.div`
 border: 2px solid purple;
