@@ -1,7 +1,9 @@
 import styled from 'styled-components'
+import { useState } from 'react'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { BiShoppingBag } from 'react-icons/bi'
 import navText from '../data/navText'
+import LoginSignupBackground from './LoginSignupBackground'
 
 const NavContainer = styled.div`
    width: 100%;
@@ -81,32 +83,67 @@ const NotificationBadge = styled.div`
 `
 
 const Navbar = () => {
+   const [viewSignup, setViewSignup] = useState(false)
+   const [viewLogin, setViewLogin] = useState(false)
+   const [viewModal, setViewModal] = useState(false)
+
+   const toggleViewSignup = (bool) => {
+      setViewSignup(bool)
+   }
+
+   const toggleViewLogin = (bool) => {
+      setViewLogin(bool)
+   }
+
+   const toggleViewModal = (bool) => {
+      setViewModal(bool)
+   }
+
    return (
-      <NavContainer>
-         <Nav>
-            <NavList>
-               <Left>
-                  <NavListItem style={{ fontWeight: '700' }}>{navText.companyName.toUpperCase()}</NavListItem>
-                  <NavListItem>{navText.title1}</NavListItem>
-                  <NavListItem>{navText.title3}</NavListItem>
-               </Left>
-               <Right>
-                  <NavListItem>
-                     <SearchBarContainer>
-                        <Input />
-                        <AiOutlineSearch style={{ marginRight: '4px' }} />
-                     </SearchBarContainer>
-                  </NavListItem>
-                  <NavListItem>{navText.register}</NavListItem>
-                  <NavListItem>{navText.login}</NavListItem>
-                  <NavListItem style={{ position: 'relative' }}>
-                     <BiShoppingBag style={{ width: '20px', height: '20px' }} />
-                     <NotificationBadge>5</NotificationBadge>
-                  </NavListItem>
-               </Right>
-            </NavList>
-         </Nav>
-      </NavContainer>
+      <>
+         <NavContainer>
+            <Nav>
+               <NavList>
+                  <Left>
+                     <NavListItem
+                        style={{ fontWeight: '700' }}>
+                        {navText.companyName.toUpperCase()}
+                     </NavListItem>
+                     <NavListItem>{navText.title1}</NavListItem>
+                     <NavListItem>{navText.title3}</NavListItem>
+                  </Left>
+                  <Right>
+                     <NavListItem>
+                        <SearchBarContainer>
+                           <Input />
+                           <AiOutlineSearch style={{ marginRight: '4px' }} />
+                        </SearchBarContainer>
+                     </NavListItem>
+                     <NavListItem onClick={() => {
+                        toggleViewSignup(true)
+                        toggleViewModal(true)
+                     }}>{navText.register}</NavListItem>
+                     <NavListItem onClick={() => {
+                        toggleViewLogin(true)
+                        toggleViewModal(true)
+                     }}>{navText.login}</NavListItem>
+                     <NavListItem style={{ position: 'relative' }}>
+                        <BiShoppingBag style={{ width: '20px', height: '20px' }} />
+                        <NotificationBadge>5</NotificationBadge>
+                     </NavListItem>
+                  </Right>
+               </NavList>
+            </Nav>
+         </NavContainer>
+         <LoginSignupBackground
+            viewModal={viewModal}
+            toggleViewModal={toggleViewModal}
+            viewSignup={viewSignup}
+            viewLogin={viewLogin}
+            toggleViewSignup={toggleViewSignup}
+            toggleViewLogin={toggleViewLogin}
+         />
+      </>
    )
 }
 
