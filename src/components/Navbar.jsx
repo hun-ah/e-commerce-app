@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { BiShoppingBag } from 'react-icons/bi'
 import navText from '../data/navText'
-import LoginSignupBackground from './LoginSignupBackground'
+import LoginSignupBackground from './login-signup/LoginSignupBackground'
 
 const NavContainer = styled.div`
    width: 100%;
