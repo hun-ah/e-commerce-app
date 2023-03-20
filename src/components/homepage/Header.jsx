@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { homepageImgs } from '../data/homepage'
-import Spacer from './Spacer'
+import { homepageImgs } from '../../data/homepage'
+import Spacer from '../Spacer'
 
 const StyledHeader = styled.header`
    height: 100vh;

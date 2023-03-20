@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { homepageImgs } from '../data/homepage'
+import { homepageImgs } from '../../data/homepage'
 
 const Container = styled.div`
    width: 100%;

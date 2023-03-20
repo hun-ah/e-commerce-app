@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import NavBar from '../components/Navbar'
 import Footer from '../components/Footer'
-import ProductCard from '../components/ProductCard'
+import ProductCard from '../components/product-list/ProductCard'
 import Spacer from "../components/Spacer"
 import { productList } from "../data/productList"
 

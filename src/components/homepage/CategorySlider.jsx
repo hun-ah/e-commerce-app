@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import styled from 'styled-components'
 import CategoryCard from './CategoryCard'
-import { sliderText } from '../data/homepage'
+import { sliderText } from '../../data/homepage'
 import { BsArrowRight, BsArrowLeft } from 'react-icons/bs'
 
 const Container = styled.div`
