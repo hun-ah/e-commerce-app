@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 import { homepageImgs } from '../../data/homepage'
+import { Link } from "react-router-dom"
+import { useEffect } from 'react'
 
 const Container = styled.div`
    width: 100%;
@@ -49,21 +51,32 @@ const ImgContainer = styled.div`
    background-size: cover;
    width: 100%;
    height: 750px;
-   cursor: pointer;
 `
 const SloganContainer = styled.div`
    display: flex;
    flex-direction: column;
    gap: 30px;
 `
-const ShopNow = styled.a`
+const ShopNow = styled.span`
    cursor: pointer;
    width: fit-content;
    font-size: 14px;
    border-bottom: 1px solid black;
 `
 
-const NewCollection = () => {
+const StyledLink = styled(Link)`
+     text-decoration: none;
+     color: #000;
+`
+
+const NewCollection = ({ setFilters }) => {
+   const goToProductPage = true
+
+   // scroll to top of screen on render
+   useEffect(() => {
+      window.scrollTo(0, 0)
+   }, [])
+
    return (
       <Container>
          <Section>
@@ -74,7 +87,9 @@ const NewCollection = () => {
                <h2>NEW AROUND HERE</h2>
                <SloganContainer>
                   <p>New styles and colours for your spring debut. Flowers aren't the only thing in bloom.</p>
-                  <ShopNow>SHOP NOW</ShopNow>
+                  <StyledLink to='/productList/all' onClick={() => goToProductPage ? setFilters({}) : ''}>
+                     <ShopNow>SHOP NOW</ShopNow>
+                  </StyledLink>
                </SloganContainer>
             </Right>
          </Section>

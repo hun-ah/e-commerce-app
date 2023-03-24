@@ -4,6 +4,8 @@ import { AiOutlineSearch } from 'react-icons/ai'
 import { BiShoppingBag } from 'react-icons/bi'
 import navText from '../data/navText'
 import LoginSignupBackground from './login-signup/LoginSignupBackground'
+import { Link, useLocation } from "react-router-dom";
+import { useEffect } from 'react'
 
 const NavContainer = styled.div`
    width: 100%;
@@ -48,6 +50,12 @@ const NavList = styled.ul`
 
 const NavListItem = styled.li`
    cursor: pointer;
+   color: #000;
+`
+
+const StyledLink = styled(Link)`
+     text-decoration: none;
+     color: #000;
 `
 
 const SearchBarContainer = styled.div`
@@ -82,10 +90,11 @@ const NotificationBadge = styled.div`
    left: 12px;
 `
 
-const Navbar = () => {
+const Navbar = ({ setFilters }) => {
    const [viewSignup, setViewSignup] = useState(false)
    const [viewLogin, setViewLogin] = useState(false)
    const [viewModal, setViewModal] = useState(false)
+   const location = useLocation().pathname
 
    const toggleViewSignup = (bool) => {
       setViewSignup(bool)
@@ -99,18 +108,32 @@ const Navbar = () => {
       setViewModal(bool)
    }
 
+   // scroll to top of screen on render
+   useEffect(() => {
+      window.scrollTo(0, 0)
+   }, [])
+
+   // for now for if user is logged in
+   const user = false
+
    return (
       <>
          <NavContainer>
             <Nav>
                <NavList>
                   <Left>
-                     <NavListItem
-                        style={{ fontWeight: '700' }}>
-                        {navText.companyName.toUpperCase()}
-                     </NavListItem>
-                     <NavListItem>{navText.title1}</NavListItem>
-                     <NavListItem>{navText.title3}</NavListItem>
+                     <StyledLink to="/">
+                        <NavListItem
+                           style={{ fontWeight: '700' }}>
+                           {navText.companyName.toUpperCase()}
+                        </NavListItem>
+                     </StyledLink>
+                     <StyledLink to="/productList/all" onClick={() => location.includes('productList') ? setFilters({}) : ''}>
+                        <NavListItem >{navText.title1}</NavListItem>
+                     </StyledLink>
+                     <StyledLink to="/ourStory">
+                        <NavListItem>{navText.title3}</NavListItem>
+                     </StyledLink>
                   </Left>
                   <Right>
                      <NavListItem>
@@ -119,17 +142,23 @@ const Navbar = () => {
                            <AiOutlineSearch style={{ marginRight: '4px' }} />
                         </SearchBarContainer>
                      </NavListItem>
-                     <NavListItem onClick={() => {
-                        toggleViewSignup(true)
-                        toggleViewModal(true)
-                     }}>{navText.register}</NavListItem>
-                     <NavListItem onClick={() => {
-                        toggleViewLogin(true)
-                        toggleViewModal(true)
-                     }}>{navText.login}</NavListItem>
+                     <NavListItem
+                        style={user ? { display: 'none' } : {}}
+                        onClick={() => {
+                           toggleViewSignup(true)
+                           toggleViewModal(true)
+                        }}>{navText.register}</NavListItem>
+                     <NavListItem
+                        style={user ? { display: 'none' } : {}}
+                        onClick={() => {
+                           toggleViewLogin(true)
+                           toggleViewModal(true)
+                        }}>{navText.login}</NavListItem>
                      <NavListItem style={{ position: 'relative' }}>
-                        <BiShoppingBag style={{ width: '20px', height: '20px' }} />
-                        <NotificationBadge>5</NotificationBadge>
+                        <StyledLink to="/shoppingBag">
+                           <BiShoppingBag style={{ width: '20px', height: '20px' }} />
+                           <NotificationBadge>5</NotificationBadge>
+                        </StyledLink>
                      </NavListItem>
                   </Right>
                </NavList>

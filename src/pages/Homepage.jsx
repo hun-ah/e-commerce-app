@@ -4,13 +4,13 @@ import CategorySlider from "../components/homepage/CategorySlider"
 import NewCollection from "../components/homepage/NewCollection"
 import Footer from "../components/Footer"
 
-const Homepage = () => {
+const Homepage = ({ setFilters }) => {
    return (
       <div>
          <Navbar />
          <Header />
          <CategorySlider />
-         <NewCollection />
+         <NewCollection setFilters={setFilters} />
          <Footer />
       </div>
    )

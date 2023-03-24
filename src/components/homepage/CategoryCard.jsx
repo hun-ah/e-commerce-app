@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 const Card = styled.div`
    display: flex;
@@ -20,12 +21,19 @@ const CardImg = styled.img`
    }
 `
 
+const StyledLink = styled(Link)`
+     text-decoration: none;
+     color: #000;
+`
+
 const CategoryCard = ({ category, img }) => {
    return (
-      <Card>
-         <CardImg src={img} />
-         <h3>{category}</h3>
-      </Card>
+      <StyledLink to={`productList/${category.toLowerCase()}`}>
+         <Card>
+            <CardImg src={img} />
+            <h3>{category}</h3>
+         </Card>
+      </StyledLink>
    )
 }
 

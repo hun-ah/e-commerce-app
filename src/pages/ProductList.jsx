@@ -3,7 +3,8 @@ import NavBar from '../components/Navbar'
 import Footer from '../components/Footer'
 import ProductCard from '../components/product-list/ProductCard'
 import Spacer from "../components/Spacer"
-import { productList } from "../data/productList"
+import { useEffect, useState } from "react"
+import { useLocation } from "react-router-dom"
 
 const Container = styled.div`
    width: 100%;
@@ -61,58 +62,100 @@ const Products = styled.div`
    width: 100%;
 `
 
-const products = productList.map(obj => {
-   return <ProductCard key={obj.id} name={obj.name} price={obj.price} category={obj.category} img={obj.img} />
-})
+const ProductList = ({ filters, setFilters }) => {
+   const location = useLocation()
+   const category = location.pathname.split('/')[2]
+   const [sortBy, setSortedBy] = useState('newest')
+   const [products, setProducts] = useState([])
+   const [filteredProducts, setFilteredProducts] = useState([])
 
-const ProductList = () => {
+   console.log(filteredProducts)
+   console.log(filters)
+
+   const handleFilters = (e) => {
+      const { value, name } = e.target
+      setFilters({
+         ...filters,
+         [name]: value
+      })
+   }
+
+   useEffect(() => {
+      const getProducts = async () => {
+         try {
+            const res = await fetch(category === 'all' ? `http://localhost:5000/api/product/findAll` : `http://localhost:5000/api/product/findAll?category=${category}`)
+            const data = await res.json()
+            setProducts(data)
+         } catch (err) {
+            console.log(err)
+         }
+      }
+      getProducts()
+   }, [category])
+
+   useEffect(() => {
+      category &&
+         setFilteredProducts(
+            products.filter((item) =>
+               Object.entries(filters).every(([key, value]) =>
+                  item[key].includes(value)
+               )
+            )
+         )
+   }, [products, category, filters])
+
+   useEffect(() => {
+      if (sortBy === 'newest') {
+         setFilteredProducts(prevProd => {
+            return [...prevProd].sort((a, b) => a.createdAt - b.createdAt)
+         })
+      } else if (sortBy === 'high') {
+         setFilteredProducts(prevProd => {
+            return [...prevProd].sort((a, b) => b.price - a.price)
+         })
+      } else {
+         setFilteredProducts(prevProd => {
+            return [...prevProd].sort((a, b) => a.price - b.price)
+         })
+      }
+   }, [sortBy]);
+
+   const productsList = filteredProducts.map(obj => {
+      return <ProductCard key={obj._id} name={obj.title} price={obj.price} category={obj.category} img={obj.img} />
+   })
+
    return (
       <>
-         <NavBar />
+         <NavBar setFilters={setFilters} />
          <Spacer />
          <Container>
-
             <ProductSection>
                <HeadingText>All The Clothes — Thoughtfully designed, exceptionally made everything. Welcome to Everyday Luxury.</HeadingText>
                <Filters>
                   <Filter>
                      Filter By:
-                     <Select>
-                        <Option disabled selected>
-                           Category
+                     <Select name="color" defaultValue="Color" onChange={handleFilters}>
+                        <Option value="Color" disabled>
+                           Color
                         </Option>
-                        <Option>Bottoms</Option>
-                        <Option>Tops</Option>
-                        <Option>Dresses</Option>
-                        <Option>Bodysuits</Option>
-                        <Option>Jackets</Option>
-                        <Option>Shoes</Option>
-                        <Option>Accessories</Option>
-                     </Select>
-                     <Select>
-                        <Option disabled selected>
-                           Size
-                        </Option>
-                        <Option>XS</Option>
-                        <Option>S</Option>
-                        <Option>M</Option>
-                        <Option>L</Option>
-                        <Option>XL</Option>
-                        <Option>XXL</Option>
+                        <Option>blue</Option>
+                        <Option>white</Option>
+                        <Option>maroon</Option>
+                        <Option>nude</Option>
+                        <Option>yellow</Option>
                      </Select>
                   </Filter>
                   <Filter>
                      Sort By:
-                     <Select>
-                        <Option selected>Newest</Option>
-                        <Option>Price, high to low</Option>
-                        <Option>Price, low to high</Option>
+                     <Select onChange={(e) => setSortedBy(e.target.value)}>
+                        <Option value="newest">Newest</Option>
+                        <Option value="high">Price, high to low</Option>
+                        <Option value="low">Price, low to high</Option>
                      </Select>
                   </Filter>
                </Filters>
                <Products>
-                  {products}
-                  {products}
+                  {productsList}
                </Products>
             </ProductSection>
          </Container>

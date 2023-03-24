@@ -6,6 +6,8 @@ import {
    FaInstagram
 } from 'react-icons/fa'
 import navText from '../data/navText'
+import { Link } from "react-router-dom";
+import { useEffect } from 'react';
 
 const Container = styled.div`
    width: 100%;
@@ -61,24 +63,46 @@ const FooterLi = styled.li`
    cursor: pointer;
 `
 
+const StyledLink = styled(Link)`
+     text-decoration: none;
+     color: #FFF;
+`
+
 const Copyright = styled.small`
    font-size: 12px;
 `
 
 const Footer = () => {
+   // scroll to top of screen on render
+   useEffect(() => {
+      window.scrollTo(0, 0)
+   }, [])
+
    return (
       <Container>
          <StyledFooter>
             <Top>
                <IconContainer>
-                  <FaFacebookF />
-                  <FaTwitter />
-                  <FaInstagram />
-                  <FaPinterestP />
+                  <StyledLink to="https://www.facebook.com">
+                     <FaFacebookF />
+                  </StyledLink>
+                  <StyledLink to="https://www.twitter.com">
+                     <FaTwitter />
+                  </StyledLink>
+                  <StyledLink to="https://www.instagram.com">
+                     <FaInstagram />
+                  </StyledLink>
+                  <StyledLink to="https://www.pinterest.com">
+                     <FaPinterestP />
+                  </StyledLink>
                </IconContainer>
                <FooterText>
-                  <FooterLi>{navText.title1}</FooterLi>
-                  <FooterLi>{navText.title3}</FooterLi>
+                  <StyledLink to="/productList/all">
+                     <FooterLi>{navText.title1}</FooterLi>
+                  </StyledLink>
+                  <StyledLink to="/ourStory">
+                     <FooterLi>{navText.title3}</FooterLi>
+                  </StyledLink>
                </FooterText>
             </Top>
             <Bottom>

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from 'react-router-dom'
 
 const StyledProductCard = styled.div`
    flex-direction: column;
@@ -55,16 +56,23 @@ const ProductText = styled.div`
    margin-top: 10px;
 `
 
+const StyledLink = styled(Link)`
+     text-decoration: none;
+     color: #000;
+`
+
 const ProductCard = ({ name, price, category, img }) => {
    return (
       <StyledProductCard>
-         <ProductImg img={img}>
-            <AddToCart>Add To Cart</AddToCart>
-         </ProductImg>
-         <ProductText>
-            <span>{name}</span>
-            <span>{`$${price}`}</span>
-         </ProductText>
+         <StyledLink to='/product/item'>
+            <ProductImg img={img}>
+               <AddToCart>Add To Cart</AddToCart>
+            </ProductImg>
+            <ProductText>
+               <span>{name}</span>
+               <span>{`$${price}`}</span>
+            </ProductText>
+         </StyledLink>
       </StyledProductCard>
    )
 }
