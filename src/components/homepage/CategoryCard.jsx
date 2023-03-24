@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 const Card = styled.div`
    display: flex;
@@ -27,8 +27,10 @@ const StyledLink = styled(Link)`
 `
 
 const CategoryCard = ({ category, img }) => {
+   const location = useLocation().pathname
+
    return (
-      <StyledLink to={`productList/${category.toLowerCase()}`}>
+      <StyledLink to={location === '/' ? `productList/${category.toLowerCase()}` : `/productList/${category.toLowerCase()}`}>
          <Card>
             <CardImg src={img} />
             <h3>{category}</h3>

@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import { productList } from '../../data/productList'
 import { AiOutlineClose } from 'react-icons/ai'
 import QtyCounter from "./QtyCounter"
 
@@ -20,7 +19,7 @@ const ProductContainer = styled.div`
 
 const ProductImg = styled.div`
    height: 100%;
-   background: url(${productList[1].img});
+   background: url('https://images.pexels.com/photos/15577045/pexels-photo-15577045.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
    background-position: center;
    background-size: cover;
 `
@@ -49,8 +48,8 @@ const ProductCardBag = () => {
                <ProductImg></ProductImg>
             </ContainerSection>
             <ContainerSection style={{ paddingLeft: '20px' }}>
-               <h4>{productList[1].name}</h4>
-               <h5>${productList[1].price}</h5>
+               <h4>Shirt</h4>
+               <h5>$20</h5>
             </ContainerSection>
             <ContainerSection style={{ flex: '0.5' }}>
                <h6>Size: S</h6>

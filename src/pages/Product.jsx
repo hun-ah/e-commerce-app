@@ -2,7 +2,6 @@ import styled from "styled-components"
 import Navbar from "../components/Navbar"
 import Footer from '../components/Footer'
 import Spacer from "../components/Spacer"
-import { productList } from "../data/productList"
 
 const Container = styled.div`
    width: 100%;
@@ -128,15 +127,15 @@ const Product = () => {
          <Container>
             <ProductPage>
                <Left>
-                  <ProductImg img={productList[7].img}></ProductImg>
-                  <ProductImg img={productList[7].img}></ProductImg>
-                  <ProductImg img={productList[7].img}></ProductImg>
-                  <ProductImg img={productList[7].img}></ProductImg>
+                  <ProductImg img='https://images.pexels.com/photos/15577045/pexels-photo-15577045.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'></ProductImg>
+                  <ProductImg img='https://images.pexels.com/photos/15577045/pexels-photo-15577045.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'></ProductImg>
+                  <ProductImg img='https://images.pexels.com/photos/15577045/pexels-photo-15577045.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'></ProductImg>
+                  <ProductImg img='https://images.pexels.com/photos/15577045/pexels-photo-15577045.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'></ProductImg>
                </Left>
                <Right>
                   <TitleInfo>
-                     <Name>{productList[7].name}</Name>
-                     <Price>${productList[7].price}</Price>
+                     <Name>Shirt</Name>
+                     <Price>$20</Price>
                   </TitleInfo>
                   <Divider></Divider>
                   <SizesContainer>
