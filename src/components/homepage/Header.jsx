@@ -7,7 +7,7 @@ const StyledHeader = styled.header`
    display: flex;
    justify-content: center;
    align-items: center;
-   height: 100vh;
+   height: 85vh;
    position: relative;
    background-image: url(${homepageImgs[0].img});
    background-position: center;

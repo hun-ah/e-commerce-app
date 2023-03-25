@@ -11,8 +11,8 @@ import { useEffect } from 'react';
 
 const Container = styled.div`
    width: 100%;
-   height: 70px;
-   background: #000;
+   height: 150px;
+   background: #2D2B2B;
    display: flex;
    align-items: center;
    justify-content: center;
@@ -23,6 +23,7 @@ const StyledFooter = styled.footer`
    width: 100%;
    display: flex;
    flex-direction: column;
+   gap: 50px;
    color: white;
 
    @media screen and (min-width: 1500px){
@@ -41,7 +42,8 @@ const Top = styled.div`
 const Bottom = styled.div`
    height: 40%;
    display: flex;
-   justify-content: center;
+   flex-direction: column;
+   justify-content: flex-end;
    align-items: center;
 `
 
@@ -82,6 +84,11 @@ const Footer = () => {
       <Container>
          <StyledFooter>
             <Top>
+               <FooterText>
+                  <StyledLink to="/" style={{ fontWeight: '700' }}>
+                     HM&CO
+                  </StyledLink>
+               </FooterText>
                <IconContainer>
                   <StyledLink to="https://www.facebook.com">
                      <FaFacebookF />
@@ -96,11 +103,9 @@ const Footer = () => {
                      <FaPinterestP />
                   </StyledLink>
                </IconContainer>
-               <FooterText>
-               </FooterText>
             </Top>
             <Bottom>
-               <Copyright>&copy; {navText.companyName.toUpperCase()} 2023</Copyright>
+               <Copyright style={{ color: '#B9B9B9' }}>&copy; {navText.companyName.toUpperCase()} 2023 | Privacy | Terms of use</Copyright>
             </Bottom>
          </StyledFooter>
       </Container>
