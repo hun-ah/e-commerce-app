@@ -4,10 +4,9 @@ import { Link, useLocation } from 'react-router-dom'
 const Card = styled.div`
    display: flex;
    flex-direction: column;
-   align-items: center;
    width: 350px;
    height: 500px;
-   gap: 10px;
+   gap: 16px;
    flex-shrink: 0;
    cursor: pointer;
 `
@@ -24,6 +23,10 @@ const CardImg = styled.img`
 const StyledLink = styled(Link)`
      text-decoration: none;
      color: #000;
+
+     &:hover {
+      text-decoration: underline;
+     }
 `
 
 const CategoryCard = ({ category, img, setFilters }) => {

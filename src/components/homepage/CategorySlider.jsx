@@ -13,7 +13,6 @@ const Container = styled.div`
 
 const SliderContainer = styled.section`
    font-family: 'Poppins', sans-serif;
-   height: 600px;
    display: flex;
    position: relative;
    flex-direction: column;
@@ -24,7 +23,7 @@ const SliderContainer = styled.section`
 
    & h2 {
       align-self: 'flex-start';
-      font-size: 18px;
+      font-size: 16px;
    }
 
    @media screen and (min-width: 1500px){
@@ -35,7 +34,7 @@ const SliderContainer = styled.section`
 const Slider = styled.div`
    display: flex;
    margin: 40px 0;
-   font-size: 14px;
+   font-size: 32px;
    width: 100%;
    gap: 20px;
    transform: translateX(${({ slideIndex }) => slideIndex * -28}%);
