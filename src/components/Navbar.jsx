@@ -60,7 +60,7 @@ const NavListItem = styled.li`
 
 const StyledLink = styled(Link)`
      text-decoration: none;
-     color: #000;
+     color: #2D2B2B;
 `
 
 const SearchBarContainer = styled.div`
