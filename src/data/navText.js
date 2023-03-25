@@ -4,7 +4,7 @@ const navText = {
    title2: 'Brands',
    title3: 'Our Story',
    register: 'Register',
-   login: 'Login',
+   login: 'Log in',
 }
 
 export default navText

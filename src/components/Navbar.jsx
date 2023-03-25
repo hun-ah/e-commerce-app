@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import MobileNav from './MobileNav'
 import { useState } from 'react'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { BiShoppingBag } from 'react-icons/bi'
@@ -100,6 +101,7 @@ const Navbar = ({ setFilters }) => {
    const [viewSignup, setViewSignup] = useState(false)
    const [viewLogin, setViewLogin] = useState(false)
    const [viewModal, setViewModal] = useState(false)
+   const [windowWidth, setWindowWidth] = useState(window.innerWidth)
    const location = useLocation().pathname
 
    const toggleViewSignup = (bool) => {
@@ -119,65 +121,79 @@ const Navbar = ({ setFilters }) => {
       window.scrollTo(0, 0)
    }, [])
 
+   // when to display mobile nav
+   useEffect(() => {
+      window.addEventListener("resize", function () {
+         setWindowWidth(window.innerWidth)
+      })
+   }, [windowWidth])
+
    // for now for if user is logged in
    const user = false
 
    return (
       <>
-         <NavContainer>
-            <Nav>
-               <NavList>
-                  <Left>
-                     <StyledLink to="/">
-                        <NavListItem
-                           style={{ fontWeight: '700', textDecoration: 'none' }}>
-                           {navText.companyName.toUpperCase()}
-                        </NavListItem>
-                     </StyledLink>
-                     <StyledLink to="/productList/all" onClick={() => location.includes('/') ? setFilters({}) : ''}>
-                        <NavListItem >{navText.title1}</NavListItem>
-                     </StyledLink>
-                     <StyledLink to="/ourStory">
-                        <NavListItem>{navText.title3}</NavListItem>
-                     </StyledLink>
-                  </Left>
-                  <Right>
-                     <NavListItem style={{ textDecoration: 'none' }}>
-                        <SearchBarContainer>
-                           <AiOutlineSearch style={{ marginLeft: '10px' }} />
-                           <Input />
-                        </SearchBarContainer>
-                     </NavListItem>
-                     <NavListItem
-                        style={user ? { display: 'none' } : {}}
-                        onClick={() => {
-                           toggleViewSignup(true)
-                           toggleViewModal(true)
-                        }}>{navText.register}</NavListItem>
-                     <NavListItem
-                        style={user ? { display: 'none' } : {}}
-                        onClick={() => {
-                           toggleViewLogin(true)
-                           toggleViewModal(true)
-                        }}>{navText.login}</NavListItem>
-                     <NavListItem style={{ position: 'relative' }}>
-                        <StyledLink to="/shoppingBag">
-                           <BiShoppingBag style={{ width: '24px', height: '24px' }} />
-                           <NotificationBadge>5</NotificationBadge>
-                        </StyledLink>
-                     </NavListItem>
-                  </Right>
-               </NavList>
-            </Nav>
-         </NavContainer>
-         <LoginSignupBackground
-            viewModal={viewModal}
-            toggleViewModal={toggleViewModal}
-            viewSignup={viewSignup}
-            viewLogin={viewLogin}
-            toggleViewSignup={toggleViewSignup}
-            toggleViewLogin={toggleViewLogin}
-         />
+         {windowWidth > 800 ?
+            <>
+               {/* Desktop Nav */}
+               <NavContainer>
+                  <Nav>
+                     <NavList>
+                        <Left>
+                           <StyledLink to="/">
+                              <NavListItem
+                                 style={{ fontWeight: '700', textDecoration: 'none' }}>
+                                 {navText.companyName.toUpperCase()}
+                              </NavListItem>
+                           </StyledLink>
+                           <StyledLink to="/productList/all" onClick={() => location.includes('/') ? setFilters({}) : ''}>
+                              <NavListItem >{navText.title1}</NavListItem>
+                           </StyledLink>
+                           <StyledLink to="/ourStory">
+                              <NavListItem>{navText.title3}</NavListItem>
+                           </StyledLink>
+                        </Left>
+                        <Right>
+                           <NavListItem style={{ textDecoration: 'none' }}>
+                              <SearchBarContainer>
+                                 <AiOutlineSearch style={{ marginLeft: '10px' }} />
+                                 <Input />
+                              </SearchBarContainer>
+                           </NavListItem>
+                           <NavListItem
+                              style={user ? { display: 'none' } : {}}
+                              onClick={() => {
+                                 toggleViewSignup(true)
+                                 toggleViewModal(true)
+                              }}>{navText.register}</NavListItem>
+                           <NavListItem
+                              style={user ? { display: 'none' } : {}}
+                              onClick={() => {
+                                 toggleViewLogin(true)
+                                 toggleViewModal(true)
+                              }}>{navText.login}</NavListItem>
+                           <NavListItem style={{ position: 'relative' }}>
+                              <StyledLink to="/shoppingBag">
+                                 <BiShoppingBag style={{ width: '24px', height: '24px' }} />
+                                 <NotificationBadge>5</NotificationBadge>
+                              </StyledLink>
+                           </NavListItem>
+                        </Right>
+                     </NavList>
+                  </Nav>
+               </NavContainer>
+               <LoginSignupBackground
+                  viewModal={viewModal}
+                  toggleViewModal={toggleViewModal}
+                  viewSignup={viewSignup}
+                  viewLogin={viewLogin}
+                  toggleViewSignup={toggleViewSignup}
+                  toggleViewLogin={toggleViewLogin}
+               />
+            </>
+            :
+            <MobileNav />
+         }
       </>
    )
 }

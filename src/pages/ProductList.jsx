@@ -69,8 +69,6 @@ const ProductList = ({ filters, setFilters }) => {
    const [products, setProducts] = useState([])
    const [filteredProducts, setFilteredProducts] = useState([])
 
-   console.log(filters)
-
    const handleFilters = (e) => {
       const { value, name } = e.target
       setFilters({
