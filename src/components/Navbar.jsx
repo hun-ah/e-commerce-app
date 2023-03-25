@@ -33,24 +33,29 @@ const Nav = styled.nav`
 const Left = styled.div`
    display: flex;
    align-items: center;
-   gap: 20px;
+   gap: 24px;
 `
 
 const Right = styled.div`
    display: flex;
    align-items: center;
-   gap: 20px;
+   gap: 24px;
 `
 
 const NavList = styled.ul`
    width: 100%;
    display: flex;
-   justify-content: space-between;
+   justify-content: space-between; 
+   transition: all .6s ease-in-out;
 `
 
 const NavListItem = styled.li`
    cursor: pointer;
-   color: #000;
+   color: #2D2B2B;
+
+    &:hover{
+      text-decoration: underline;
+   }
 `
 
 const StyledLink = styled(Link)`
@@ -59,16 +64,18 @@ const StyledLink = styled(Link)`
 `
 
 const SearchBarContainer = styled.div`
-   border: 1px solid #dbdbdb;
+   border-radius: 30px;
+   background: #F9F9F9;
    display: flex;
    align-items: center;
-   padding: 2px;
 `
 
 const Input = styled.input`
    font-family: 'Poppins', sans-serif;
+   background: #F9F9F9;
+   border-radius: 30px;
    border: none;
-   padding: 4px;
+   padding: 8px 14px;
    text-indent: 2px;
 
    &:focus {
@@ -82,7 +89,7 @@ const NotificationBadge = styled.div`
    display: flex;
    justify-content: center;
    align-items: center;
-   font-size: 12px;
+   font-size: 10px;
    border-radius: 50%;
    background: #5980f5;
    position: absolute;
@@ -124,7 +131,7 @@ const Navbar = ({ setFilters }) => {
                   <Left>
                      <StyledLink to="/">
                         <NavListItem
-                           style={{ fontWeight: '700' }}>
+                           style={{ fontWeight: '700', textDecoration: 'none' }}>
                            {navText.companyName.toUpperCase()}
                         </NavListItem>
                      </StyledLink>
@@ -136,10 +143,10 @@ const Navbar = ({ setFilters }) => {
                      </StyledLink>
                   </Left>
                   <Right>
-                     <NavListItem>
+                     <NavListItem style={{ textDecoration: 'none' }}>
                         <SearchBarContainer>
                            <Input />
-                           <AiOutlineSearch style={{ marginRight: '4px' }} />
+                           <AiOutlineSearch style={{ marginRight: '10px' }} />
                         </SearchBarContainer>
                      </NavListItem>
                      <NavListItem
@@ -156,7 +163,7 @@ const Navbar = ({ setFilters }) => {
                         }}>{navText.login}</NavListItem>
                      <NavListItem style={{ position: 'relative' }}>
                         <StyledLink to="/shoppingBag">
-                           <BiShoppingBag style={{ width: '20px', height: '20px' }} />
+                           <BiShoppingBag style={{ width: '24px', height: '24px' }} />
                            <NotificationBadge>5</NotificationBadge>
                         </StyledLink>
                      </NavListItem>
