@@ -14,7 +14,8 @@ const Section = styled.section`
    font-family: 'Poppins', sans-serif;
    width: 100%;
    display: flex;
-   margin: 6px 0;
+   margin: 60px 0;
+
 
    @media screen and (min-width: 1500px){
       width: 1500px;

@@ -18,7 +18,7 @@ const SliderContainer = styled.section`
    flex-direction: column;
    justify-content: center;
    padding: 40px 20px;
-   margin: 40px 0;
+   margin: 100px 0;
    overflow: hidden;
 
    & h2 {
