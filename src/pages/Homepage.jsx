@@ -8,7 +8,7 @@ const Homepage = ({ setFilters }) => {
    return (
       <div>
          <Navbar setFilters={setFilters} />
-         <Header />
+         <Header setFilters={setFilters} />
          <CategorySlider setFilters={setFilters} />
          <NewCollection setFilters={setFilters} />
          <Footer />
