@@ -76,8 +76,7 @@ const Input = styled.input`
    border-radius: 30px;
    border: none;
    padding: 8px 14px;
-   text-indent: 2px;
-
+   padding-left: 10px;
    &:focus {
    outline: none;
    }
@@ -145,8 +144,8 @@ const Navbar = ({ setFilters }) => {
                   <Right>
                      <NavListItem style={{ textDecoration: 'none' }}>
                         <SearchBarContainer>
+                           <AiOutlineSearch style={{ marginLeft: '10px' }} />
                            <Input />
-                           <AiOutlineSearch style={{ marginRight: '10px' }} />
                         </SearchBarContainer>
                      </NavListItem>
                      <NavListItem
