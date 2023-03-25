@@ -26,12 +26,12 @@ const StyledHeader = styled.header`
 `
 
 const Container = styled.div`
-   margin-top: 160px;
    display: flex;
    position: relative;
    flex-direction: column;
    justify-content: center;
    align-items: center;
+   padding: 0 20px;
    @media screen and (min-width: 1500px){
       width: 1500px;
    }
@@ -45,6 +45,10 @@ const HeadingText = styled.h1`
    text-align: center;
    letter-spacing: -0.03em;
    color: #FFF;
+
+   @media screen and (max-width: 650px){
+   font-size: 46px;
+   }
 `
 
 const Button = styled.button`
