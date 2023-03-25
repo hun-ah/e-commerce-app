@@ -8,7 +8,6 @@ const StyledHeader = styled.header`
    background-position: center;
    background-size: cover;
    background-repeat: no-repeat;
-   cursor: pointer;
 `
 
 const Header = () => {

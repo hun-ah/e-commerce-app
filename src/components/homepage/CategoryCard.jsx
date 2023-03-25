@@ -26,11 +26,15 @@ const StyledLink = styled(Link)`
      color: #000;
 `
 
-const CategoryCard = ({ category, img }) => {
+const CategoryCard = ({ category, img, setFilters }) => {
    const location = useLocation().pathname
+   const goToProductPage = true
 
    return (
-      <StyledLink to={location === '/' ? `productList/${category.toLowerCase()}` : `/productList/${category.toLowerCase()}`}>
+      <StyledLink
+         to={location === '/' ? `productList/${category.toLowerCase()}` : `/productList/${category.toLowerCase()}`}
+         onClick={() => goToProductPage ? setFilters({}) : ''}
+      >
          <Card>
             <CardImg src={img} />
             <h3>{category}</h3>

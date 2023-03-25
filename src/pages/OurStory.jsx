@@ -64,10 +64,10 @@ const SectionText1 = styled.section`
    padding: 100px 0;
 `
 
-const OurStory = () => {
+const OurStory = ({ setFilters }) => {
    return (
       <>
-         <Navbar />
+         <Navbar setFilters={setFilters} />
          <Spacer />
          <Header>
             <Heading1>Our Story</Heading1>

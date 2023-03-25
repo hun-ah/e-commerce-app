@@ -119,10 +119,10 @@ const Overview = styled.div`
    }
 `
 
-const Product = () => {
+const Product = ({ setFilters }) => {
    return (
       <>
-         <Navbar />
+         <Navbar setFilters={setFilters} />
          <Spacer />
          <Container>
             <ProductPage>

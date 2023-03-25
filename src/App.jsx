@@ -16,9 +16,9 @@ function App() {
     <Routes>
       <Route path="/" element={<Homepage setFilters={setFilters} />} />
       <Route path="/productList/:category" element={<ProductList filters={filters} setFilters={setFilters} />} />
-      <Route path="/ourStory" element={<OurStory />} />
-      <Route path="/shoppingBag" element={<ShoppingBag />} />
-      <Route path="/product/:id" element={<Product />} />
+      <Route path="/ourStory" element={<OurStory setFilters={setFilters} />} />
+      <Route path="/shoppingBag" element={<ShoppingBag setFilters={setFilters} />} />
+      <Route path="/product/:id" element={<Product setFilters={setFilters} />} />
     </Routes>
   );
 }

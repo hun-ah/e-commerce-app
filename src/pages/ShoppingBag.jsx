@@ -13,17 +13,17 @@ const Container = styled.div`
    justify-content: center;
 `
 
-const ShoppingCart = () => {
+const ShoppingCart = ({ setFilters }) => {
    const [bag, setBag] = useState(1)
 
    return (
       <>
-         <Navbar />
+         <Navbar setFilters={setFilters} />
          <Spacer />
          <Container>
             {bag < 1 ? <EmptyBag /> : <StockedBag />}
          </Container>
-         <CategorySlider />
+         <CategorySlider setFilters={setFilters} />
          <Footer />
       </>
    )

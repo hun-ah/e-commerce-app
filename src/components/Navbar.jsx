@@ -128,7 +128,7 @@ const Navbar = ({ setFilters }) => {
                            {navText.companyName.toUpperCase()}
                         </NavListItem>
                      </StyledLink>
-                     <StyledLink to="/productList/all" onClick={() => location.includes('productList') ? setFilters({}) : ''}>
+                     <StyledLink to="/productList/all" onClick={() => location.includes('/') ? setFilters({}) : ''}>
                         <NavListItem >{navText.title1}</NavListItem>
                      </StyledLink>
                      <StyledLink to="/ourStory">

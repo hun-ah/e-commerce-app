@@ -57,7 +57,7 @@ const Option = styled.option`
 const Products = styled.div`
    display: flex;
    flex-wrap: wrap;
-   justify-content: space-between;
+   gap: 20px;
    padding: 20px 20px;
    width: 100%;
 `
@@ -69,7 +69,6 @@ const ProductList = ({ filters, setFilters }) => {
    const [products, setProducts] = useState([])
    const [filteredProducts, setFilteredProducts] = useState([])
 
-   console.log(filteredProducts)
    console.log(filters)
 
    const handleFilters = (e) => {
@@ -107,7 +106,7 @@ const ProductList = ({ filters, setFilters }) => {
    useEffect(() => {
       if (sortBy === 'newest') {
          setFilteredProducts(prevProd => {
-            return [...prevProd].sort((a, b) => a.createdAt - b.createdAt)
+            return [...prevProd].sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))
          })
       } else if (sortBy === 'high') {
          setFilteredProducts(prevProd => {

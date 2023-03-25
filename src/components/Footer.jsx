@@ -97,12 +97,6 @@ const Footer = () => {
                   </StyledLink>
                </IconContainer>
                <FooterText>
-                  <StyledLink to="/productList/all">
-                     <FooterLi>{navText.title1}</FooterLi>
-                  </StyledLink>
-                  <StyledLink to="/ourStory">
-                     <FooterLi>{navText.title3}</FooterLi>
-                  </StyledLink>
                </FooterText>
             </Top>
             <Bottom>

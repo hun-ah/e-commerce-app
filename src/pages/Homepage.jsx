@@ -7,9 +7,9 @@ import Footer from "../components/Footer"
 const Homepage = ({ setFilters }) => {
    return (
       <div>
-         <Navbar />
+         <Navbar setFilters={setFilters} />
          <Header />
-         <CategorySlider />
+         <CategorySlider setFilters={setFilters} />
          <NewCollection setFilters={setFilters} />
          <Footer />
       </div>

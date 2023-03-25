@@ -76,11 +76,9 @@ const Arrow = styled.div`
       
 `
 
-const categoryList = sliderText.categories.map(obj => {
-   return <CategoryCard key={obj.id} category={obj.category} img={obj.img} />
-})
 
-const CategorySlider = () => {
+
+const CategorySlider = ({ setFilters }) => {
    const [slideIndex, setSlideIndex] = useState(0)
 
    const handleClick = (direction) => {
@@ -99,7 +97,7 @@ const CategorySlider = () => {
                <BsArrowLeft />
             </Arrow>
             <Slider slideIndex={slideIndex}>
-               {categoryList}
+               {sliderText.categories.map(obj => <CategoryCard key={obj.id} category={obj.category} img={obj.img} setFilters={setFilters} />)}
             </Slider>
             <Arrow
                direction='right'
