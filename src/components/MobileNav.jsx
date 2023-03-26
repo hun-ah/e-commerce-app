@@ -1,8 +1,9 @@
 import styled from "styled-components"
 import navText from '../data/navText'
 import Burger from "./Burger"
+import LoginSignupBackground from './login-signup/LoginSignupBackground'
 import { useState } from 'react'
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { AiOutlineSearch } from 'react-icons/ai'
 import { BiShoppingBag } from 'react-icons/bi'
 
@@ -51,6 +52,7 @@ const NavList = styled.ul`
 const NavListItem = styled.li`
    cursor: pointer;
    color: #2D2B2B;
+   list-style: none;
 
     &:hover{
       text-decoration: underline;
@@ -112,16 +114,41 @@ const MobileMenu = styled.div`
    z-index: 1;
    transform: translateX(${({ open }) => open ? '0%' : '100%'});
    transition: 0.3s;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   gap: 24px;
+   font-family: 'Poppins', sans-serif;
+   font-size: 24px;
+   line-height: 36px;
+   color: #2D2B2B;
 `
 
-const MobileNav = () => {
+const SignupLogin = styled.div`
+   display: flex;
+   gap: 24px;
+   font-size: 16px;
+   line-height: 24px;
+`
+
+const MobileNav = ({ setFilters, toggleViewModal }) => {
    const [showSearchBar, setShowSearchBar] = useState(false)
    const [openBurger, setOpenBurger] = useState(false)
+   const location = useLocation().pathname
 
    document.body.style.overflow = openBurger ? "hidden" : "visible"
 
+   // for now for if user is logged in
+   const user = false
+
    const handleSearchBar = () => {
       setShowSearchBar(prevState => !prevState)
+   }
+
+   const handleMobileLinks = () => {
+      setOpenBurger(false)
+      return location.includes('/') ? setFilters({}) : ''
    }
 
    return (
@@ -164,10 +191,22 @@ const MobileNav = () => {
          {showSearchBar ? <Input
             placeholder="Search"
          /> : null}
-         {/* {openBurger ?
-            <MobileMenu>
-            </MobileMenu> : null} */}
-         <MobileMenu open={openBurger}></MobileMenu>
+         <MobileMenu open={openBurger}>
+            <StyledLink to='/productList/all' onClick={handleMobileLinks}>
+               <NavListItem>Clothing</NavListItem>
+            </StyledLink>
+            <StyledLink to='/ourStory' onClick={handleMobileLinks}>
+               <NavListItem>Our Story</NavListItem>
+            </StyledLink>
+            {!user ?
+               <SignupLogin>
+                  <NavListItem>Register</NavListItem>
+                  <NavListItem>Log in</NavListItem>
+               </SignupLogin>
+               : null
+            }
+         </MobileMenu>
+         <LoginSignupBackground className="loginsignup"></LoginSignupBackground>
       </>
    )
 }

@@ -193,7 +193,11 @@ const Navbar = ({ setFilters }) => {
                />
             </>
             :
-            <MobileNav />
+            <MobileNav
+               setFilters={setFilters}
+               viewModal={viewModal}
+               toggleViewModal={toggleViewModal}
+            />
          }
       </>
    )
