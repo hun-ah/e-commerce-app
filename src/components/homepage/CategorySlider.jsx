@@ -17,8 +17,8 @@ const SliderContainer = styled.section`
    position: relative;
    flex-direction: column;
    justify-content: center;
-   padding: 40px 20px;
-   margin: 100px 0;
+   padding: 40px 0;
+   margin: 100px 20px;
    overflow: hidden;
 
    & h2 {
@@ -44,9 +44,13 @@ const Slider = styled.div`
       display: none;
    }
 
-    @media screen and (min-width: 1500px){
+   @media screen and (min-width: 1500px){
       transform: translateX(${({ slideIndex }) => slideIndex * -25}%);
-      }
+   }
+
+   @media screen and (max-width: 1439px){
+      overflow-y: scroll;
+   }
 `
 
 const Arrow = styled.div`
@@ -71,11 +75,13 @@ const Arrow = styled.div`
    &:hover {
    opacity: 1;
    }
+
+   @media screen and (max-width: 1439px){
+      display: none;
+   }
       
       
 `
-
-
 
 const CategorySlider = ({ setFilters }) => {
    const [slideIndex, setSlideIndex] = useState(0)
