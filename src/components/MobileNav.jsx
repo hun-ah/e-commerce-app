@@ -102,9 +102,23 @@ const NotificationBadge = styled.div`
    left: 12px;
 `
 
+const MobileMenu = styled.div`
+   position: fixed;
+   top: 0;
+   left: 0;
+   height:100%;
+   width: 100%;
+   background: #F9F9F9;
+   z-index: 1;
+   transform: translateX(${({ open }) => open ? '0%' : '100%'});
+   transition: 0.3s;
+`
+
 const MobileNav = () => {
    const [showSearchBar, setShowSearchBar] = useState(false)
    const [openBurger, setOpenBurger] = useState(false)
+
+   document.body.style.overflow = openBurger ? "hidden" : "visible"
 
    const handleSearchBar = () => {
       setShowSearchBar(prevState => !prevState)
@@ -150,6 +164,10 @@ const MobileNav = () => {
          {showSearchBar ? <Input
             placeholder="Search"
          /> : null}
+         {/* {openBurger ?
+            <MobileMenu>
+            </MobileMenu> : null} */}
+         <MobileMenu open={openBurger}></MobileMenu>
       </>
    )
 }
