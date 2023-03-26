@@ -131,11 +131,12 @@ const Navbar = ({ setFilters }) => {
    // for now for if user is logged in
    const user = false
 
+   document.body.style.overflow = viewModal ? "hidden" : "visible"
+
    return (
       <>
          {windowWidth > 800 ?
             <>
-               {/* Desktop Nav */}
                <NavContainer>
                   <Nav>
                      <NavList>
