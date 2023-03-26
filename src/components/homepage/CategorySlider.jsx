@@ -19,6 +19,7 @@ const SliderContainer = styled.section`
    justify-content: center;
    padding: 40px 0;
    margin: 100px 20px;
+   margin-bottom: 50px;
    overflow: hidden;
 
    & h2 {

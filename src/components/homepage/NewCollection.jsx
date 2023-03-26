@@ -14,11 +14,16 @@ const Section = styled.section`
    font-family: 'Poppins', sans-serif;
    width: 100%;
    display: flex;
-   margin-bottom: 100px;
-
+   margin-bottom: 120px;
 
    @media screen and (min-width: 1500px){
       width: 1500px;
+   }
+
+   @media screen and (max-width: 950px){
+      flex-direction: column;
+      margin-bottom: 80px;
+
    }
 `
 
@@ -26,6 +31,10 @@ const Left = styled.div`
    width: 50%;
    height: 100%;
    padding: 20px;
+
+   @media screen and (max-width: 950px){
+      width:100%
+   }
 `
 
 const Right = styled.div`
@@ -45,6 +54,13 @@ const Right = styled.div`
       font-size: 46px;
       line-height: 125%;
       letter-spacing: -0.03em;
+      width: 95%;
+   }
+
+   @media screen and (max-width: 950px){
+   width: 100%;
+   gap: 20px;
+
    }
 `
 
@@ -80,6 +96,9 @@ const ShopNow = styled.button`
    color: #888585;
    text-decoration: underline;
 }
+@media screen and (max-width: 950px){
+      margin-top: 0px;
+   }
 `
 
 const StyledLink = styled(Link)`
