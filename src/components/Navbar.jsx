@@ -133,7 +133,7 @@ const Navbar = ({ setFilters }) => {
 
    return (
       <>
-         {windowWidth > 800 ?
+         {windowWidth > 770 ?
             <>
                {/* Desktop Nav */}
                <NavContainer>
