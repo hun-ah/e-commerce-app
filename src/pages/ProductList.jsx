@@ -131,10 +131,12 @@ const ProductList = ({ filters, setFilters }) => {
                         <Option value="Color" disabled>
                            Color
                         </Option>
-                        <Option>blue</Option>
                         <Option>white</Option>
-                        <Option>maroon</Option>
                         <Option>nude</Option>
+                        <Option>brown</Option>
+                        <Option>blue</Option>
+                        <Option>maroon</Option>
+                        <Option>pink</Option>
                         <Option>yellow</Option>
                      </Select>
                   </Filter>
