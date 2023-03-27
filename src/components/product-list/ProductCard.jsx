@@ -61,10 +61,10 @@ const StyledLink = styled(Link)`
      color: #000;
 `
 
-const ProductCard = ({ name, price, category, img }) => {
+const ProductCard = ({ name, price, img, id }) => {
    return (
       <StyledProductCard>
-         <StyledLink to='/product/item'>
+         <StyledLink to={`/product/${id}`}>
             <ProductImg img={img}>
                <AddToCart>Add To Cart</AddToCart>
             </ProductImg>

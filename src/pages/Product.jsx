@@ -2,6 +2,8 @@ import styled from "styled-components"
 import Navbar from "../components/Navbar"
 import Footer from '../components/Footer'
 import Spacer from "../components/Spacer"
+import { useState, useEffect } from 'react'
+import { useLocation } from "react-router-dom"
 
 const Container = styled.div`
    width: 100%;
@@ -120,6 +122,26 @@ const Overview = styled.div`
 `
 
 const Product = ({ setFilters }) => {
+   const [product, setProduct] = useState({})
+   const location = useLocation().pathname
+   const param = location.split('/')[2]
+
+   useEffect(() => {
+      const getProduct = async () => {
+         try {
+            const res = await fetch(`http://localhost:5000/api/product/find/${param}`)
+            const data = await res.json()
+            setProduct(data)
+         } catch (err) {
+            console.log(err)
+         }
+      }
+      getProduct()
+   }, [param]
+   )
+
+   console.log(product)
+
    return (
       <>
          <Navbar setFilters={setFilters} />
@@ -127,15 +149,15 @@ const Product = ({ setFilters }) => {
          <Container>
             <ProductPage>
                <Left>
-                  <ProductImg img='https://images.pexels.com/photos/15577045/pexels-photo-15577045.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'></ProductImg>
-                  <ProductImg img='https://images.pexels.com/photos/15577045/pexels-photo-15577045.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'></ProductImg>
-                  <ProductImg img='https://images.pexels.com/photos/15577045/pexels-photo-15577045.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'></ProductImg>
-                  <ProductImg img='https://images.pexels.com/photos/15577045/pexels-photo-15577045.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'></ProductImg>
+                  {product.img && <ProductImg img={product.img[0]}></ProductImg>}
+                  {product.img && <ProductImg img={product.img[1]}></ProductImg>}
+                  {product.img && <ProductImg img={product.img[2]}></ProductImg>}
+                  {product.img && <ProductImg img={product.img[3]}></ProductImg>}
                </Left>
                <Right>
                   <TitleInfo>
-                     <Name>Shirt</Name>
-                     <Price>$20</Price>
+                     <Name>{product.title}</Name>
+                     <Price>{`$${product.price}`}</Price>
                   </TitleInfo>
                   <Divider></Divider>
                   <SizesContainer>
@@ -153,7 +175,7 @@ const Product = ({ setFilters }) => {
                   <Divider></Divider>
                   <Overview>
                      <h3>Overview</h3>
-                     <p>A utility-inspired overshirt crafted with conscious materials, salvaged fibres, and mindful production methods without compromising comfort and durability.. Made from soft cottonized hemp, this loose-fit style features a worn-in vintage look. Unlined. 2 patch pockets on the front with double topstitch details. Point collar. Front closure with button plackets. Pair it with its matching shorts or jeans as an elevated, tone-on-tone uniform.</p>
+                     <p>{product.desc}</p>
                   </Overview>
                   <Divider></Divider>
                </Right>

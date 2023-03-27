@@ -117,10 +117,6 @@ const ProductList = ({ filters, setFilters }) => {
       }
    }, [sortBy]);
 
-   const productsList = filteredProducts.map(obj => {
-      return <ProductCard key={obj._id} name={obj.title} price={obj.price} category={obj.category} img={obj.img} />
-   })
-
    return (
       <>
          <NavBar setFilters={setFilters} />
@@ -152,7 +148,9 @@ const ProductList = ({ filters, setFilters }) => {
                   </Filter>
                </Filters>
                <Products>
-                  {productsList}
+                  {filteredProducts.map(obj => {
+                     return <ProductCard key={obj._id} id={obj._id} name={obj.title} price={obj.price} category={obj.category} img={obj.img} />
+                  })}
                </Products>
             </ProductSection>
          </Container>
