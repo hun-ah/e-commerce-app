@@ -10,32 +10,55 @@ const Container = styled.div`
 const Section = styled.section`
    font-family: 'Poppins', sans-serif;
    display: flex;
-   padding: 0 20px 100px 20px;
-   height: 600px;
+   padding: 0 20px;
+   margin: 140px 0;
    width: 100%;
+   gap: 48px;
 
    @media screen and (min-width: 1500px) {
       width: 1500px;
+   }
+
+   @media screen and (max-width: 900px) {
+      flex-direction: column;
+      margin: 48px 0;
    }
 `
 
 const Left = styled.div`
    width: 50%;
+   height: 500px;
    background-image: url('https://images.pexels.com/photos/3965543/pexels-photo-3965543.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
    background-position: center;
    background-size: cover;
+
+   @media screen and (max-width: 900px) {
+      width: 100%;
+   }
 `
 
 const Right = styled.div`
    display: flex;
    flex-direction: column;
    justify-content: center;
-   padding-left: 20px;
-   gap: 20px;
+   gap: 24px;
    width: 50%;
 
    & h2 {
-      font-size: 66px;
+      font-size: 46px;
+      line-height: 125%;
+      letter-spacing: -0.03em;
+      color: #2D2B2B;
+   }
+
+   & p {
+      font-size: 16px;
+      line-height: 24px;
+      color: #2D2B2B;
+   }
+
+   @media screen and (max-width: 900px) {
+      width: 100%;
    }
 `
 

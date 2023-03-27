@@ -103,7 +103,8 @@ const ShopNow = styled.button`
 
 const StyledLink = styled(Link)`
      text-decoration: none;
-   color: #2D2B2B;
+      color: #2D2B2B;
+      width: fit-content;
 
 `
 
