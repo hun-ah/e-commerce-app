@@ -88,7 +88,7 @@ const Header = ({ setFilters }) => {
                <HeadingText>
                   Spring has most <br /> <span style={{ fontStyle: 'italic' }}>definitely</span> sprung.
                </HeadingText>
-               <StyledLink to="/productList/all" onClick={() => goToProductPage ? setFilters({}) : ''}>
+               <StyledLink to="/productList/spring" onClick={() => goToProductPage ? setFilters({}) : ''}>
                   <Button>Shop spring</Button>
                </StyledLink>
             </Container>

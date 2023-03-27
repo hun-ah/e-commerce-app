@@ -126,7 +126,7 @@ const NewCollection = ({ setFilters }) => {
                <h2>NEW AROUND HERE</h2>
                <SloganContainer>
                   <p>New styles and colours for your spring debut. Flowers aren't the only thing in bloom.</p>
-                  <StyledLink to='/productList/all' onClick={() => goToProductPage ? setFilters({}) : ''}>
+                  <StyledLink to='/productList/spring' onClick={() => goToProductPage ? setFilters({}) : ''}>
                      <ShopNow>Shop spring</ShopNow>
                   </StyledLink>
                </SloganContainer>
