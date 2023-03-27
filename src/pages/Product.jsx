@@ -81,17 +81,25 @@ const Sizes = styled.div`
    gap: 10px;
 `
 
-const Size = styled.button`
+const Size = styled.label`
    cursor: pointer;
    border: 1px solid #e7e7e7;
    border-radius: 5px;
    background: #FFF;
    padding: 10px;
    transition: .2s ease-in-out;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 
    &:hover {
       background: #ececec;
    }
+`
+
+const SizeInput = styled.input`
+   appearance: none;
+   position: absolute;
 `
 
 const AddToCart = styled.button`
@@ -123,13 +131,19 @@ const Overview = styled.div`
 
 const Product = ({ setFilters }) => {
    const [product, setProduct] = useState({})
+   const [productSize, setProductSize] = useState('')
    const location = useLocation().pathname
-   const param = location.split('/')[2]
+   const id = location.split('/')[2]
+
+   const handleInputChange = (e) => {
+      const { value } = e.target
+      setProductSize(value)
+   }
 
    useEffect(() => {
       const getProduct = async () => {
          try {
-            const res = await fetch(`http://localhost:5000/api/product/find/${param}`)
+            const res = await fetch(`http://localhost:5000/api/product/find/${id}`)
             const data = await res.json()
             setProduct(data)
          } catch (err) {
@@ -137,7 +151,7 @@ const Product = ({ setFilters }) => {
          }
       }
       getProduct()
-   }, [param]
+   }, [id]
    )
 
    return (
@@ -158,7 +172,17 @@ const Product = ({ setFilters }) => {
                   <SizesContainer>
                      <h2>Select a size</h2>
                      <Sizes>
-                        {product.size && product.size.map(size => <Size key={size}>{size}</Size>)}
+                        {product.size && product.size.map(size => {
+                           return <Size key={size} style={productSize === size ? { border: '1px solid #000' } : {}}>
+                              {size}
+                              <SizeInput
+                                 type='radio'
+                                 name='size'
+                                 value={size}
+                                 onChange={handleInputChange}
+                              />
+                           </Size>
+                        })}
                      </Sizes>
                   </SizesContainer>
                   <Divider></Divider>
