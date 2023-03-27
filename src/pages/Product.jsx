@@ -140,8 +140,6 @@ const Product = ({ setFilters }) => {
    }, [param]
    )
 
-   console.log(product)
-
    return (
       <>
          <Navbar setFilters={setFilters} />
@@ -149,10 +147,7 @@ const Product = ({ setFilters }) => {
          <Container>
             <ProductPage>
                <Left>
-                  {product.img && <ProductImg img={product.img[0]}></ProductImg>}
-                  {product.img && <ProductImg img={product.img[1]}></ProductImg>}
-                  {product.img && <ProductImg img={product.img[2]}></ProductImg>}
-                  {product.img && <ProductImg img={product.img[3]}></ProductImg>}
+                  {product.img && product.img.map(img => <ProductImg key={img} img={img}></ProductImg>)}
                </Left>
                <Right>
                   <TitleInfo>
@@ -163,11 +158,7 @@ const Product = ({ setFilters }) => {
                   <SizesContainer>
                      <h2>Select a size</h2>
                      <Sizes>
-                        <Size>XS</Size>
-                        <Size>S</Size>
-                        <Size>M</Size>
-                        <Size>L</Size>
-                        <Size>XL</Size>
+                        {product.size && product.size.map(size => <Size key={size}>{size}</Size>)}
                      </Sizes>
                   </SizesContainer>
                   <Divider></Divider>
