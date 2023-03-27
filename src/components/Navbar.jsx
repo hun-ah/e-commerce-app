@@ -183,22 +183,23 @@ const Navbar = ({ setFilters }) => {
                      </NavList>
                   </Nav>
                </NavContainer>
-               <LoginSignupBackground
-                  viewModal={viewModal}
-                  toggleViewModal={toggleViewModal}
-                  viewSignup={viewSignup}
-                  viewLogin={viewLogin}
-                  toggleViewSignup={toggleViewSignup}
-                  toggleViewLogin={toggleViewLogin}
-               />
             </>
             :
             <MobileNav
                setFilters={setFilters}
-               viewModal={viewModal}
                toggleViewModal={toggleViewModal}
+               toggleViewLogin={toggleViewLogin}
+               toggleViewSignup={toggleViewSignup}
             />
          }
+         <LoginSignupBackground
+            viewModal={viewModal}
+            toggleViewModal={toggleViewModal}
+            viewSignup={viewSignup}
+            viewLogin={viewLogin}
+            toggleViewSignup={toggleViewSignup}
+            toggleViewLogin={toggleViewLogin}
+         />
       </>
    )
 }

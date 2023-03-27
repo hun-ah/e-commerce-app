@@ -7,7 +7,7 @@ const Container = styled.div`
    position: fixed;
    height: 100vh;
    width: 100vw;
-   z-index: 10;
+   z-index: 100;
 `
 
 const Background = styled.div`
@@ -21,6 +21,7 @@ const Modal = styled.div`
    font-family: 'Poppins', sans-serif;
    position: absolute;
    display: flex;
+   justify-content: space-between;
    flex-direction: column;
    height: 700px;
    width: 700px;
@@ -28,10 +29,15 @@ const Modal = styled.div`
    top: 50%;
    left: 50%;
    transform: translate(-50%, -50%);
+
+   @media screen and (max-width: 800px){
+      height: 100%;
+      width: 100%;
+   }
 `
 
 const CloseContainer = styled.div`
-   padding: 20px;
+   padding: 20px 20px 0px 20px;
    display: flex;
    justify-content: flex-end;
 `

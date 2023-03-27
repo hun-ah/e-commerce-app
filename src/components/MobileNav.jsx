@@ -1,7 +1,6 @@
 import styled from "styled-components"
 import navText from '../data/navText'
 import Burger from "./Burger"
-import LoginSignupBackground from './login-signup/LoginSignupBackground'
 import { useState } from 'react'
 import { Link, useLocation } from "react-router-dom"
 import { AiOutlineSearch } from 'react-icons/ai'
@@ -132,7 +131,7 @@ const SignupLogin = styled.div`
    line-height: 24px;
 `
 
-const MobileNav = ({ setFilters, toggleViewModal }) => {
+const MobileNav = ({ setFilters, toggleViewModal, toggleViewSignup, toggleViewLogin }) => {
    const [showSearchBar, setShowSearchBar] = useState(false)
    const [openBurger, setOpenBurger] = useState(false)
    const location = useLocation().pathname
@@ -149,6 +148,11 @@ const MobileNav = ({ setFilters, toggleViewModal }) => {
    const handleMobileLinks = () => {
       setOpenBurger(false)
       return location.includes('/') ? setFilters({}) : ''
+   }
+
+   const handleRegisterLogin = () => {
+      setOpenBurger(false)
+      toggleViewModal(true)
    }
 
    return (
@@ -200,13 +204,18 @@ const MobileNav = ({ setFilters, toggleViewModal }) => {
             </StyledLink>
             {!user ?
                <SignupLogin>
-                  <NavListItem>Register</NavListItem>
-                  <NavListItem>Log in</NavListItem>
+                  <NavListItem onClick={() => {
+                     handleRegisterLogin()
+                     toggleViewSignup(true)
+                  }}>Register</NavListItem>
+                  <NavListItem onClick={() => {
+                     handleRegisterLogin()
+                     toggleViewLogin(true)
+                  }}>Log in</NavListItem>
                </SignupLogin>
                : null
             }
          </MobileMenu>
-         <LoginSignupBackground className="loginsignup"></LoginSignupBackground>
       </>
    )
 }

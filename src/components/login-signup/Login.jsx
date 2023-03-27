@@ -6,7 +6,7 @@ const MainContainer = styled.div`
    align-items: center;
    justify-content: center;
    width: 60%;
-   margin: 0 auto;
+   margin: auto;
 
    & h4 {
       font-size: 30px;
