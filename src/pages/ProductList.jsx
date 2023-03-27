@@ -57,7 +57,7 @@ const Option = styled.option`
 const Products = styled.div`
    display: flex;
    flex-wrap: wrap;
-   gap: 20px;
+   gap: 18px;
    padding: 20px 20px;
    width: 100%;
 `
