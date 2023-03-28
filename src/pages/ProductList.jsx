@@ -30,6 +30,9 @@ const HeadingText = styled.h1`
    line-height: 36px;
    color: #2D2B2B;
 
+   @media screen and (max-width: 900px){
+      width: 100%;
+   }
 `
 const Filters = styled.div`
    display: flex;
@@ -48,6 +51,10 @@ const Filter = styled.div`
    font-size: 12px;
    line-height: 18px;
    color: #2D2B2B;
+
+   @media screen and (max-width: 500px){
+      gap: 8px;
+   }
 `
 
 const Select = styled.select`
@@ -58,6 +65,10 @@ const Select = styled.select`
    background: #F9F9F9;
    border: 1px solid #2D2B2B;
    cursor: pointer;
+
+   @media screen and (max-width: 499px){
+      padding: 8px 4px;
+   }
 `
 
 const Option = styled.option`

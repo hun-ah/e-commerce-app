@@ -14,11 +14,25 @@ const StyledProductCard = styled.div`
    @media screen and (max-width: 1500px){
       width: 24%;
    }
+
+   @media screen and (max-width: 1240px){
+    width: 32% ;
+   }
+
+   @media screen and (max-width: 890px){
+    width: 48% ;
+   }
+
+   @media screen and (max-width: 675px){
+    width: 100% ;
+   }
 `
 
 const ProductImg = styled.div`
    background-image: url(${({ img }) => img});
    background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
    position: relative;
    display: flex;
    justify-content: center;
