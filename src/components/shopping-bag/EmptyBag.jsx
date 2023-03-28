@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { Link, useLocation } from "react-router-dom";
+
 
 const Container = styled.div`
    width: 100%;
@@ -15,6 +17,7 @@ const Section = styled.section`
    flex-direction: column;
    justify-content: center;
    gap: 6px;
+   color: #2D2B2B;
 
    & h1 {
       font-size: 40px;
@@ -26,7 +29,6 @@ const Section = styled.section`
 
    & span {
       cursor: pointer;
-      border-bottom: 1px solid black;
       width: fit-content;
    }
 
@@ -35,13 +37,30 @@ const Section = styled.section`
    }
 `
 
+const StyledLink = styled(Link)`
+     text-decoration: none;
+     color: #2D2B2B;
+     width: fit-content;
+     border-bottom: 1px solid #2D2B2B;;
+
+
+     &:hover{
+        color: #888585;
+        border-color: #888585;
+     }
+`
+
 const EmptyBag = () => {
+   const location = useLocation().pathname
+
    return (
       <Container>
          <Section>
             <h1>My Bag</h1>
             <p>You haven't put any items in your bag.</p>
-            <span>Start shopping</span>
+            <StyledLink to='/productList/all'>
+               <span>Start shopping</span>
+            </StyledLink>
          </Section>
       </Container>
    )

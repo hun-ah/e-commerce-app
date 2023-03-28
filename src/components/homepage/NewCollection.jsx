@@ -89,7 +89,7 @@ const ShopNow = styled.button`
    line-height: 24px;
    color: #2D2B2B;
    cursor: pointer;
-   transition: .1s ease -in -out;
+   transition: .1s ease-in-out;
 
    &:hover {
    border-color: #888585;
