@@ -5,7 +5,7 @@ const MainContainer = styled.div`
    flex-direction: column;
    align-items: center;
    width: 60%;
-   margin: 0 auto;
+   margin: auto;
 
    & h4 {
       font-size: 30px;

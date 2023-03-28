@@ -7,6 +7,7 @@ import navText from '../data/navText'
 import LoginSignupBackground from './login-signup/LoginSignupBackground'
 import { Link, useLocation } from "react-router-dom";
 import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 
 const NavContainer = styled.div`
    width: 100%;
@@ -92,12 +93,14 @@ const NotificationBadge = styled.div`
    font-size: 10px;
    border-radius: 50%;
    background: #5980f5;
+   color: #F9F9F9;
    position: absolute;
    top: -4px;
    left: 12px;
 `
 
 const Navbar = ({ setFilters }) => {
+   const quantity = useSelector(state => state.cart.quantity)
    const [viewSignup, setViewSignup] = useState(false)
    const [viewLogin, setViewLogin] = useState(false)
    const [viewModal, setViewModal] = useState(false)
@@ -131,11 +134,12 @@ const Navbar = ({ setFilters }) => {
    // for now for if user is logged in
    const user = false
 
+   document.body.style.overflow = viewModal ? "hidden" : "visible"
+
    return (
       <>
          {windowWidth > 770 ?
             <>
-               {/* Desktop Nav */}
                <NavContainer>
                   <Nav>
                      <NavList>
@@ -175,25 +179,31 @@ const Navbar = ({ setFilters }) => {
                            <NavListItem style={{ position: 'relative' }}>
                               <StyledLink to="/shoppingBag">
                                  <BiShoppingBag style={{ width: '24px', height: '24px' }} />
-                                 <NotificationBadge>5</NotificationBadge>
+                                 {quantity >= 1 && <NotificationBadge>{quantity}</NotificationBadge>}
                               </StyledLink>
                            </NavListItem>
                         </Right>
                      </NavList>
                   </Nav>
                </NavContainer>
-               <LoginSignupBackground
-                  viewModal={viewModal}
-                  toggleViewModal={toggleViewModal}
-                  viewSignup={viewSignup}
-                  viewLogin={viewLogin}
-                  toggleViewSignup={toggleViewSignup}
-                  toggleViewLogin={toggleViewLogin}
-               />
             </>
             :
-            <MobileNav />
+            <MobileNav
+               quantity={quantity}
+               setFilters={setFilters}
+               toggleViewModal={toggleViewModal}
+               toggleViewLogin={toggleViewLogin}
+               toggleViewSignup={toggleViewSignup}
+            />
          }
+         <LoginSignupBackground
+            viewModal={viewModal}
+            toggleViewModal={toggleViewModal}
+            viewSignup={viewSignup}
+            viewLogin={viewLogin}
+            toggleViewSignup={toggleViewSignup}
+            toggleViewLogin={toggleViewLogin}
+         />
       </>
    )
 }

@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import { Link } from 'react-router-dom'
+import { useState } from "react";
 
 const StyledProductCard = styled.div`
+   position: relative;
    flex-direction: column;
    font-family: 'Poppins', sans-serif;
    font-size: 14px;
@@ -13,11 +15,25 @@ const StyledProductCard = styled.div`
    @media screen and (max-width: 1500px){
       width: 24%;
    }
+
+   @media screen and (max-width: 1240px){
+    width: 32% ;
+   }
+
+   @media screen and (max-width: 890px){
+    width: 48% ;
+   }
+
+   @media screen and (max-width: 675px){
+    width: 100% ;
+   }
 `
 
 const ProductImg = styled.div`
    background-image: url(${({ img }) => img});
    background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
    position: relative;
    display: flex;
    justify-content: center;
@@ -26,26 +42,30 @@ const ProductImg = styled.div`
    transition: .2s ease-in-out;
 
    &:hover {
-      opacity: 0.6;
+      opacity: 0.7;
    }
 `
 
 const AddToCart = styled.div`
+   font-size: 16px;
+   line-height: 24px;
    display: flex;
    justify-content: center;
    align-items: center;
-   height: 30px;
-   width: 90%;
-   background: #FFF;
+   padding: 16px 32px;
+   width: 95%;
+   background: rgb(0, 0, 0, 0.3);
+   color: #F9F9F9;
+   border: 1px solid #F9F9F9;
    position: absolute;
-   bottom: 10px;
+   bottom: 58px;
+   left: 10px;
    transition: .1s ease-in-out;
-   opacity: 0.4;
 
    &:hover {
       opacity: 1;
-      background: #000;
-      color: #FFF;
+      background: #F9F9F9;
+      color: #2D2B2B;
    }
 `
 
@@ -53,7 +73,20 @@ const ProductText = styled.div`
    display: flex;
    flex-direction: column;
    gap: 4px;
-   margin-top: 10px;
+   margin-top: 16px;
+   color: #2D2B2B;
+
+   & > span {
+      font-weight: 700;
+      font-size: 12px;
+      line-height: 18px;
+   }
+
+   & span + span {
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 18px;
+   }
 `
 
 const StyledLink = styled(Link)`
@@ -61,17 +94,24 @@ const StyledLink = styled(Link)`
      color: #000;
 `
 
-const ProductCard = ({ name, price, category, img }) => {
+const ProductCard = ({ title, price, img, id }) => {
+   const [showButton, setShowButton] = useState(false)
+
    return (
-      <StyledProductCard>
-         <StyledLink to='/product/item'>
-            <ProductImg img={img}>
-               <AddToCart>Add To Cart</AddToCart>
+      <StyledProductCard
+         onMouseEnter={() => setShowButton(true)}
+         onMouseLeave={() => setShowButton(false)}
+      >
+         <StyledLink to={`/product/${id}`}>
+            <ProductImg
+               img={img}
+            >
             </ProductImg>
             <ProductText>
-               <span>{name}</span>
+               <span>{title}</span>
                <span>{`$${price}`}</span>
             </ProductText>
+            {showButton && <AddToCart>View item</AddToCart>}
          </StyledLink>
       </StyledProductCard>
    )

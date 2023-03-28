@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { useSelector } from 'react-redux'
 
 const Container = styled.div`
    display: flex;
@@ -48,6 +49,10 @@ const CheckoutButton = styled.button`
 `
 
 const Checkout = () => {
+   const total = useSelector(state => state.cart.total)
+   const shipping = total < 1 ? 0 : 10
+   const taxes = total * 0.13
+
    return (
       <Container>
          <Top>
@@ -56,22 +61,22 @@ const Checkout = () => {
             </TextContainer>
             <TextContainer>
                <span>Subtotal</span>
-               <span>$300</span>
+               <span>${total}</span>
             </TextContainer>
             <TextContainer>
                <span>Shipping</span>
-               <span>$10</span>
+               <span>${shipping}</span>
             </TextContainer>
             <TextContainer>
                <span>Taxes</span>
-               <span>$80</span>
+               <span>${taxes.toFixed(2)}</span>
             </TextContainer>
          </Top>
          <Divider></Divider>
          <Bottom>
             <TextContainer>
                <span>Estimated Total</span>
-               <span>$390</span>
+               <span>${(total + shipping + taxes).toFixed(2)}</span>
             </TextContainer>
             <CheckoutButton>Checkout</CheckoutButton>
          </Bottom>

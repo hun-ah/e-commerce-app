@@ -24,30 +24,51 @@ const ProductSection = styled.section`
 
 const HeadingText = styled.h1`
    font-family: 'Poppins', sans-serif;
-   font-size: 30px;
    width: 60%;
-   padding: 20px;
+   padding: 104px 20px 48px 20px;
+   font-size: 24px;
+   line-height: 36px;
+   color: #2D2B2B;
+
+   @media screen and (max-width: 900px){
+      width: 100%;
+   }
 `
 const Filters = styled.div`
    display: flex;
    justify-content: space-between;
    align-items: center;
-   width: 100%;
    height: 30px;
-   padding: 0 10px 0 20px ;
-   margin: 20px 0;
+   padding: 4px;
+   margin: 20px;
 `
 
 const Filter = styled.div`
-font-family: 'Poppins', sans-serif;
-font-size: 14px;
+   font-family: 'Poppins', sans-serif;
+   display: flex;
+   align-items: center;
+   gap: 16px;
+   font-size: 12px;
+   line-height: 18px;
+   color: #2D2B2B;
+
+   @media screen and (max-width: 500px){
+      gap: 8px;
+   }
 `
 
 const Select = styled.select`
-font-family: 'Poppins', sans-serif;
-padding: 2px;
-margin: 10px;
-cursor: pointer;
+   font-family: 'Poppins', sans-serif;
+   font-size: 12px;
+   color: #2D2B2B;
+   padding: 8px 16px;
+   background: #F9F9F9;
+   border: 1px solid #2D2B2B;
+   cursor: pointer;
+
+   @media screen and (max-width: 499px){
+      padding: 8px 4px;
+   }
 `
 
 const Option = styled.option`
@@ -57,9 +78,12 @@ const Option = styled.option`
 const Products = styled.div`
    display: flex;
    flex-wrap: wrap;
-   gap: 20px;
+   justify-content: center;
+   row-gap: 40px;
+   column-gap: 16px;
    padding: 20px 20px;
    width: 100%;
+   margin-bottom: calc(104px - 20px);
 `
 
 const ProductList = ({ filters, setFilters }) => {
@@ -117,10 +141,6 @@ const ProductList = ({ filters, setFilters }) => {
       }
    }, [sortBy]);
 
-   const productsList = filteredProducts.map(obj => {
-      return <ProductCard key={obj._id} name={obj.title} price={obj.price} category={obj.category} img={obj.img} />
-   })
-
    return (
       <>
          <NavBar setFilters={setFilters} />
@@ -135,10 +155,12 @@ const ProductList = ({ filters, setFilters }) => {
                         <Option value="Color" disabled>
                            Color
                         </Option>
-                        <Option>blue</Option>
                         <Option>white</Option>
-                        <Option>maroon</Option>
                         <Option>nude</Option>
+                        <Option>brown</Option>
+                        <Option>blue</Option>
+                        <Option>maroon</Option>
+                        <Option>pink</Option>
                         <Option>yellow</Option>
                      </Select>
                   </Filter>
@@ -152,7 +174,9 @@ const ProductList = ({ filters, setFilters }) => {
                   </Filter>
                </Filters>
                <Products>
-                  {productsList}
+                  {filteredProducts.map(obj => {
+                     return <ProductCard key={obj._id} id={obj._id} title={obj.title} price={obj.price} category={obj.category} img={obj.img} size={obj.size} />
+                  })}
                </Products>
             </ProductSection>
          </Container>

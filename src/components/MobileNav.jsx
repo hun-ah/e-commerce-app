@@ -2,7 +2,7 @@ import styled from "styled-components"
 import navText from '../data/navText'
 import Burger from "./Burger"
 import { useState } from 'react'
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { AiOutlineSearch } from 'react-icons/ai'
 import { BiShoppingBag } from 'react-icons/bi'
 
@@ -51,6 +51,7 @@ const NavList = styled.ul`
 const NavListItem = styled.li`
    cursor: pointer;
    color: #2D2B2B;
+   list-style: none;
 
     &:hover{
       text-decoration: underline;
@@ -97,17 +98,62 @@ const NotificationBadge = styled.div`
    font-size: 10px;
    border-radius: 50%;
    background: #5980f5;
+   color: #F9F9F9;
    position: absolute;
    top: -4px;
    left: 12px;
 `
 
-const MobileNav = () => {
+const MobileMenu = styled.div`
+   position: fixed;
+   top: 0;
+   left: 0;
+   height:100%;
+   width: 100%;
+   background: #F9F9F9;
+   z-index: 1;
+   transform: translateX(${({ open }) => open ? '0%' : '100%'});
+   transition: 0.3s;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   gap: 24px;
+   font-family: 'Poppins', sans-serif;
+   font-size: 24px;
+   line-height: 36px;
+   color: #2D2B2B;
+`
+
+const SignupLogin = styled.div`
+   display: flex;
+   gap: 24px;
+   font-size: 16px;
+   line-height: 24px;
+`
+
+const MobileNav = ({ setFilters, toggleViewModal, toggleViewSignup, toggleViewLogin, quantity }) => {
    const [showSearchBar, setShowSearchBar] = useState(false)
    const [openBurger, setOpenBurger] = useState(false)
+   const location = useLocation().pathname
+
+   document.body.style.overflow = openBurger ? "hidden" : "visible"
+
+   // for now for if user is logged in
+   const user = false
 
    const handleSearchBar = () => {
       setShowSearchBar(prevState => !prevState)
+   }
+
+   const handleMobileLinks = () => {
+      setOpenBurger(false)
+      return location.includes('/') ? setFilters({}) : ''
+   }
+
+   const handleRegisterLogin = () => {
+      setOpenBurger(false)
+      toggleViewModal(true)
    }
 
    return (
@@ -133,7 +179,7 @@ const MobileNav = () => {
                      <NavListItem style={{ position: 'relative' }}>
                         <StyledLink to="/shoppingBag">
                            <BiShoppingBag style={{ width: '24px', height: '24px' }} />
-                           <NotificationBadge>5</NotificationBadge>
+                           {quantity >= 1 && <NotificationBadge>{quantity}</NotificationBadge>}
                         </StyledLink>
                      </NavListItem>
                      <NavListItem>
@@ -150,6 +196,27 @@ const MobileNav = () => {
          {showSearchBar ? <Input
             placeholder="Search"
          /> : null}
+         <MobileMenu open={openBurger}>
+            <StyledLink to='/productList/all' onClick={handleMobileLinks}>
+               <NavListItem>Clothing</NavListItem>
+            </StyledLink>
+            <StyledLink to='/ourStory' onClick={handleMobileLinks}>
+               <NavListItem>Our Story</NavListItem>
+            </StyledLink>
+            {!user ?
+               <SignupLogin>
+                  <NavListItem onClick={() => {
+                     handleRegisterLogin()
+                     toggleViewSignup(true)
+                  }}>Register</NavListItem>
+                  <NavListItem onClick={() => {
+                     handleRegisterLogin()
+                     toggleViewLogin(true)
+                  }}>Log in</NavListItem>
+               </SignupLogin>
+               : null
+            }
+         </MobileMenu>
       </>
    )
 }

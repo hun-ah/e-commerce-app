@@ -2,6 +2,10 @@ import styled from "styled-components"
 import Navbar from "../components/Navbar"
 import Footer from '../components/Footer'
 import Spacer from "../components/Spacer"
+import { useState, useEffect } from 'react'
+import { useLocation } from "react-router-dom"
+import { addProduct } from '../redux/cartRedux'
+import { useDispatch } from 'react-redux'
 
 const Container = styled.div`
    width: 100%;
@@ -79,17 +83,25 @@ const Sizes = styled.div`
    gap: 10px;
 `
 
-const Size = styled.button`
+const Size = styled.label`
    cursor: pointer;
    border: 1px solid #e7e7e7;
    border-radius: 5px;
    background: #FFF;
    padding: 10px;
    transition: .2s ease-in-out;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 
    &:hover {
       background: #ececec;
    }
+`
+
+const SizeInput = styled.input`
+   appearance: none;
+   position: absolute;
 `
 
 const AddToCart = styled.button`
@@ -120,6 +132,36 @@ const Overview = styled.div`
 `
 
 const Product = ({ setFilters }) => {
+   const [product, setProduct] = useState({})
+   const [quantity] = useState(1)
+   const [productSize, setProductSize] = useState('')
+   const location = useLocation().pathname
+   const id = location.split('/')[2]
+   const dispatch = useDispatch()
+
+   const handleInputChange = (e) => {
+      const { value } = e.target
+      setProductSize(value)
+   }
+
+   useEffect(() => {
+      const getProduct = async () => {
+         try {
+            const res = await fetch(`http://localhost:5000/api/product/find/${id}`)
+            const data = await res.json()
+            setProduct(data)
+         } catch (err) {
+            console.log(err)
+         }
+      }
+      getProduct()
+   }, [id]
+   )
+
+   const handleClick = () => {
+      dispatch(addProduct({ ...product, quantity, productSize }))
+   }
+
    return (
       <>
          <Navbar setFilters={setFilters} />
@@ -127,33 +169,36 @@ const Product = ({ setFilters }) => {
          <Container>
             <ProductPage>
                <Left>
-                  <ProductImg img='https://images.pexels.com/photos/15577045/pexels-photo-15577045.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'></ProductImg>
-                  <ProductImg img='https://images.pexels.com/photos/15577045/pexels-photo-15577045.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'></ProductImg>
-                  <ProductImg img='https://images.pexels.com/photos/15577045/pexels-photo-15577045.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'></ProductImg>
-                  <ProductImg img='https://images.pexels.com/photos/15577045/pexels-photo-15577045.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'></ProductImg>
+                  {product.img && product.img.map(img => <ProductImg key={img} img={img}></ProductImg>)}
                </Left>
                <Right>
                   <TitleInfo>
-                     <Name>Shirt</Name>
-                     <Price>$20</Price>
+                     <Name>{product.title}</Name>
+                     <Price>{`$${product.price}`}</Price>
                   </TitleInfo>
                   <Divider></Divider>
                   <SizesContainer>
                      <h2>Select a size</h2>
                      <Sizes>
-                        <Size>XS</Size>
-                        <Size>S</Size>
-                        <Size>M</Size>
-                        <Size>L</Size>
-                        <Size>XL</Size>
+                        {product.size && product.size.map(size => {
+                           return <Size key={size} style={productSize === size ? { border: '1px solid #000' } : {}}>
+                              {size}
+                              <SizeInput
+                                 type='radio'
+                                 name='size'
+                                 value={size}
+                                 onChange={handleInputChange}
+                              />
+                           </Size>
+                        })}
                      </Sizes>
                   </SizesContainer>
                   <Divider></Divider>
-                  <AddToCart>Add to cart</AddToCart>
+                  <AddToCart onClick={handleClick}>Add to cart</AddToCart>
                   <Divider></Divider>
                   <Overview>
                      <h3>Overview</h3>
-                     <p>A utility-inspired overshirt crafted with conscious materials, salvaged fibres, and mindful production methods without compromising comfort and durability.. Made from soft cottonized hemp, this loose-fit style features a worn-in vintage look. Unlined. 2 patch pockets on the front with double topstitch details. Point collar. Front closure with button plackets. Pair it with its matching shorts or jeans as an elevated, tone-on-tone uniform.</p>
+                     <p>{product.desc}</p>
                   </Overview>
                   <Divider></Divider>
                </Right>
