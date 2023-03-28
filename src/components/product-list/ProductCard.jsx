@@ -97,10 +97,6 @@ const StyledLink = styled(Link)`
 const ProductCard = ({ name, price, img, id }) => {
    const [showButton, setShowButton] = useState(false)
 
-   const handleClick = () => {
-      console.log('hi')
-   }
-
    return (
       <StyledProductCard
          onMouseEnter={() => setShowButton(true)}
@@ -116,7 +112,7 @@ const ProductCard = ({ name, price, img, id }) => {
                <span>{`$${price}`}</span>
             </ProductText>
          </StyledLink>
-         {showButton && <AddToCart onClick={handleClick}>Add to cart</AddToCart>}
+         {showButton && <AddToCart>Add to cart</AddToCart>}
       </StyledProductCard>
    )
 }
