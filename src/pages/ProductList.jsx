@@ -175,7 +175,7 @@ const ProductList = ({ filters, setFilters }) => {
                </Filters>
                <Products>
                   {filteredProducts.map(obj => {
-                     return <ProductCard key={obj._id} id={obj._id} name={obj.title} price={obj.price} category={obj.category} img={obj.img} />
+                     return <ProductCard key={obj._id} id={obj._id} title={obj.title} price={obj.price} category={obj.category} img={obj.img} size={obj.size} />
                   })}
                </Products>
             </ProductSection>
