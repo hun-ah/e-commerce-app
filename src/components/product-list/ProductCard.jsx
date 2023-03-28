@@ -94,7 +94,7 @@ const StyledLink = styled(Link)`
      color: #000;
 `
 
-const ProductCard = ({ name, price, img, id }) => {
+const ProductCard = ({ title, price, img, id }) => {
    const [showButton, setShowButton] = useState(false)
 
    return (
@@ -108,11 +108,11 @@ const ProductCard = ({ name, price, img, id }) => {
             >
             </ProductImg>
             <ProductText>
-               <span>{name}</span>
+               <span>{title}</span>
                <span>{`$${price}`}</span>
             </ProductText>
+            {showButton && <AddToCart>View item</AddToCart>}
          </StyledLink>
-         {showButton && <AddToCart>Add to cart</AddToCart>}
       </StyledProductCard>
    )
 }
