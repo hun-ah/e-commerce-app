@@ -6,6 +6,7 @@ import Spacer from "../components/Spacer"
 import CategorySlider from "../components/homepage/CategorySlider"
 import EmptyBag from "../components/shopping-bag/EmptyBag"
 import StockedBag from "../components/shopping-bag/StockedBag"
+import { useSelector } from 'react-redux'
 
 const Container = styled.div`
    width: 100%;
@@ -14,14 +15,14 @@ const Container = styled.div`
 `
 
 const ShoppingCart = ({ setFilters }) => {
-   const [bag, setBag] = useState(1)
+   const quantity = useSelector(state => state.cart.quantity)
 
    return (
       <>
          <Navbar setFilters={setFilters} />
          <Spacer />
          <Container>
-            {bag < 1 ? <EmptyBag /> : <StockedBag />}
+            {quantity < 1 ? <EmptyBag /> : <StockedBag />}
          </Container>
          <CategorySlider setFilters={setFilters} />
          <Footer />
