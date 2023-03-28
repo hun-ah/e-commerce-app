@@ -4,6 +4,8 @@ import Footer from '../components/Footer'
 import Spacer from "../components/Spacer"
 import { useState, useEffect } from 'react'
 import { useLocation } from "react-router-dom"
+import { addProduct } from '../redux/cartRedux'
+import { useDispatch } from 'react-redux'
 
 const Container = styled.div`
    width: 100%;
@@ -131,9 +133,11 @@ const Overview = styled.div`
 
 const Product = ({ setFilters }) => {
    const [product, setProduct] = useState({})
+   const [quantity] = useState(1)
    const [productSize, setProductSize] = useState('')
    const location = useLocation().pathname
    const id = location.split('/')[2]
+   const dispatch = useDispatch()
 
    const handleInputChange = (e) => {
       const { value } = e.target
@@ -153,6 +157,10 @@ const Product = ({ setFilters }) => {
       getProduct()
    }, [id]
    )
+
+   const handleClick = () => {
+      dispatch(addProduct({ ...product, quantity, productSize }))
+   }
 
    return (
       <>
@@ -186,7 +194,7 @@ const Product = ({ setFilters }) => {
                      </Sizes>
                   </SizesContainer>
                   <Divider></Divider>
-                  <AddToCart>Add to cart</AddToCart>
+                  <AddToCart onClick={handleClick}>Add to cart</AddToCart>
                   <Divider></Divider>
                   <Overview>
                      <h3>Overview</h3>
