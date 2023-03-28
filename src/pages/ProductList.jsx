@@ -78,7 +78,7 @@ const Option = styled.option`
 const Products = styled.div`
    display: flex;
    flex-wrap: wrap;
-   justify-content: center;
+   justify-content: flex-start;
    row-gap: 40px;
    column-gap: 16px;
    padding: 20px 20px;
