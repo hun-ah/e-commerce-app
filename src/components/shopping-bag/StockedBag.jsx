@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import ProductCardBag from "./ProductCardBag";
 import Checkout from './Checkout'
+import { useSelector } from 'react-redux'
 
 const Container = styled.div`
    width: 100%;
@@ -49,7 +50,10 @@ const Right = styled.div`
    width: 40%;
 `
 
-const StockedBag = ({ }) => {
+const StockedBag = () => {
+   const cart = useSelector(state => state.cart)
+   console.log(cart)
+
    return (
       <Container>
          <Section>
@@ -58,10 +62,7 @@ const StockedBag = ({ }) => {
             </HeadingText>
             <MainContent>
                <Left>
-                  <ProductCardBag />
-                  <ProductCardBag />
-                  <ProductCardBag />
-                  <ProductCardBag />
+                  {cart.products.map(product => <ProductCardBag key={product._id} img={product.img[0]} title={product.title} price={product.price} size={product.productSize} />)}
                </Left>
                <Right>
                   <Checkout />
