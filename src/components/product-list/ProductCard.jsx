@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useState } from "react";
 
 const StyledProductCard = styled.div`
+   position: relative;
    flex-direction: column;
    font-family: 'Poppins', sans-serif;
    font-size: 14px;
@@ -57,7 +58,8 @@ const AddToCart = styled.div`
    color: #F9F9F9;
    border: 1px solid #F9F9F9;
    position: absolute;
-   bottom: 6px;
+   bottom: 58px;
+   left: 10px;
    transition: .1s ease-in-out;
 
    &:hover {
@@ -94,21 +96,27 @@ const StyledLink = styled(Link)`
 
 const ProductCard = ({ name, price, img, id }) => {
    const [showButton, setShowButton] = useState(false)
+
+   const handleClick = () => {
+      console.log('hi')
+   }
+
    return (
-      <StyledProductCard>
+      <StyledProductCard
+         onMouseEnter={() => setShowButton(true)}
+         onMouseLeave={() => setShowButton(false)}
+      >
          <StyledLink to={`/product/${id}`}>
             <ProductImg
                img={img}
-               onMouseEnter={() => setShowButton(true)}
-               onMouseLeave={() => setShowButton(false)}
             >
-               {showButton && <AddToCart>Add to cart</AddToCart>}
             </ProductImg>
             <ProductText>
                <span>{name}</span>
                <span>{`$${price}`}</span>
             </ProductText>
          </StyledLink>
+         {showButton && <AddToCart onClick={handleClick}>Add to cart</AddToCart>}
       </StyledProductCard>
    )
 }
