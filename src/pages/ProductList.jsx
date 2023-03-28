@@ -24,30 +24,40 @@ const ProductSection = styled.section`
 
 const HeadingText = styled.h1`
    font-family: 'Poppins', sans-serif;
-   font-size: 30px;
    width: 60%;
-   padding: 20px;
+   padding: 104px 20px 48px 20px;
+   font-size: 24px;
+   line-height: 36px;
+   color: #2D2B2B;
+
 `
 const Filters = styled.div`
    display: flex;
    justify-content: space-between;
    align-items: center;
-   width: 100%;
    height: 30px;
-   padding: 0 10px 0 20px ;
-   margin: 20px 0;
+   padding: 4px;
+   margin: 20px;
 `
 
 const Filter = styled.div`
-font-family: 'Poppins', sans-serif;
-font-size: 14px;
+   font-family: 'Poppins', sans-serif;
+   display: flex;
+   align-items: center;
+   gap: 16px;
+   font-size: 12px;
+   line-height: 18px;
+   color: #2D2B2B;
 `
 
 const Select = styled.select`
-font-family: 'Poppins', sans-serif;
-padding: 2px;
-margin: 10px;
-cursor: pointer;
+   font-family: 'Poppins', sans-serif;
+   font-size: 12px;
+   color: #2D2B2B;
+   padding: 8px 16px;
+   background: #F9F9F9;
+   border: 1px solid #2D2B2B;
+   cursor: pointer;
 `
 
 const Option = styled.option`
@@ -57,9 +67,12 @@ const Option = styled.option`
 const Products = styled.div`
    display: flex;
    flex-wrap: wrap;
-   gap: 18px;
+   justify-content: center;
+   row-gap: 40px;
+   column-gap: 16px;
    padding: 20px 20px;
    width: 100%;
+   margin-bottom: calc(104px - 20px);
 `
 
 const ProductList = ({ filters, setFilters }) => {
