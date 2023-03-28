@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import { useState } from "react"
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
 import Spacer from "../components/Spacer"
