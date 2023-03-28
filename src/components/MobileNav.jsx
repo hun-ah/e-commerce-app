@@ -98,6 +98,7 @@ const NotificationBadge = styled.div`
    font-size: 10px;
    border-radius: 50%;
    background: #5980f5;
+   color: #F9F9F9;
    position: absolute;
    top: -4px;
    left: 12px;
@@ -131,7 +132,7 @@ const SignupLogin = styled.div`
    line-height: 24px;
 `
 
-const MobileNav = ({ setFilters, toggleViewModal, toggleViewSignup, toggleViewLogin }) => {
+const MobileNav = ({ setFilters, toggleViewModal, toggleViewSignup, toggleViewLogin, quantity }) => {
    const [showSearchBar, setShowSearchBar] = useState(false)
    const [openBurger, setOpenBurger] = useState(false)
    const location = useLocation().pathname
@@ -178,7 +179,7 @@ const MobileNav = ({ setFilters, toggleViewModal, toggleViewSignup, toggleViewLo
                      <NavListItem style={{ position: 'relative' }}>
                         <StyledLink to="/shoppingBag">
                            <BiShoppingBag style={{ width: '24px', height: '24px' }} />
-                           <NotificationBadge>5</NotificationBadge>
+                           {quantity >= 1 && <NotificationBadge>{quantity}</NotificationBadge>}
                         </StyledLink>
                      </NavListItem>
                      <NavListItem>
