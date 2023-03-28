@@ -19,7 +19,7 @@ const ProductContainer = styled.div`
 
 const ProductImg = styled.div`
    height: 100%;
-   background: url('https://images.pexels.com/photos/15577045/pexels-photo-15577045.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+   background: url(${({ img }) => img});
    background-position: center;
    background-size: cover;
 `
@@ -39,20 +39,20 @@ const Divider = styled.div`
    margin: 20px 10px;
 `
 
-const ProductCardBag = () => {
+const ProductCardBag = ({ img, title, price, size }) => {
    return (
       <Container>
          <Divider></Divider>
          <ProductContainer>
             <ContainerSection>
-               <ProductImg></ProductImg>
+               <ProductImg img={img}></ProductImg>
             </ContainerSection>
             <ContainerSection style={{ paddingLeft: '20px' }}>
-               <h4>Shirt</h4>
-               <h5>$20</h5>
+               <h4>{title}</h4>
+               <h5>${price}</h5>
             </ContainerSection>
             <ContainerSection style={{ flex: '0.5' }}>
-               <h6>Size: S</h6>
+               <h6>Size: {size}</h6>
             </ContainerSection>
             <ContainerSection style={{ flex: '0.5' }}>
                <QtyCounter />
