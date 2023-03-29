@@ -28,9 +28,6 @@ const ProductPage = styled.section`
 
    @media screen and (max-width: 1100px) {
     gap: 20px;
-   }
-
-   @media screen and (max-width: 900px) {
     flex-direction: column;
    }
 `
@@ -46,7 +43,7 @@ const Left = styled.div`
       display: none;
    }
 
-   @media screen and (max-width: 900px) {
+   @media screen and (max-width: 1100px) {
     flex-wrap: nowrap;
     width: 100%;
     height: 100%;
@@ -61,10 +58,15 @@ const Right = styled.div`
    display: flex;
    flex-direction: column;
    gap: 40px;
-
-   @media screen and (max-width: 900px) {
+   
+   @media screen and (max-width: 1100px) {
     width: 100%;
    }
+
+   @media (min-width: 800px) and (max-width: 1099px){
+      width: 70%;
+   }
+
 `
 
 const ProductImg = styled.div`
@@ -74,11 +76,7 @@ const ProductImg = styled.div`
    width: 49%;
    min-height: 590px;
 
-   @media screen and (max-width: 1100px) {
-    width: 100%;
-   }
-
-   @media screen and (max-width: 900px){
+   @media screen and (max-width: 1100px){
       width: 90%;
       flex-shrink: 0;
    }
