@@ -11,20 +11,21 @@ const Container = styled.div`
 const Section = styled.section`
    font-family: 'Poppins', sans-serif;
    width: 100%;
-   height: 400px;
+   height: 200px;
    padding: 0 20px;
    display: flex;
    flex-direction: column;
-   justify-content: center;
+   /* justify-content: center; */
    gap: 6px;
    color: #2D2B2B;
 
    & h1 {
-      font-size: 40px;
+      font-size: 24px;
+      line-height: 36px;
    }
 
    & p {
-      margin-top: 40px;
+      margin-top: 20px;
    }
 
    & span {
@@ -33,7 +34,7 @@ const Section = styled.section`
    }
 
    @media screen and (min-width: 1500px){
-      width:1500px;
+      width: 1500px;
    }
 `
 
