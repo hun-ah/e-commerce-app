@@ -15,59 +15,91 @@ const Container = styled.div`
 `
 
 const ProductPage = styled.section`
+   margin: 104px 20px;
    display: flex;
    height: auto;
    width: 100%;
+   gap: 12px;
+   color: #2D2B2B;
+
    @media screen and (min-width: 1500px){
       width: 1500px;
    }
+
+   @media screen and (max-width: 1100px) {
+    gap: 20px;
+   }
+
+   @media screen and (max-width: 900px) {
+    flex-direction: column;
+   }
 `
 
-const Divider = styled.div`
-   width: 100%;
-   height: 1px;
-   background: #e7e7e7;
-`
 
 const Left = styled.div`
    display: flex;
    flex-wrap: wrap;
-   gap: 10px;
-   padding: 20px;
+   gap: 8px;
    width: 72%;
-   height: 100%;
+
+   &::-webkit-scrollbar{
+      display: none;
+   }
+
+   @media screen and (max-width: 900px) {
+    flex-wrap: nowrap;
+    width: 100%;
+    height: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+   }
 `
 
 const Right = styled.div`
-   padding: 20px 20px 0 0;
-   width: 38%;
-   height: 100%;
+   width: 35%;
+   height: fit-content;
+   display: flex;
+   flex-direction: column;
+   gap: 40px;
+
+   @media screen and (max-width: 900px) {
+    width: 100%;
+   }
 `
 
 const ProductImg = styled.div`
    background-image: url(${({ img }) => img});
    background-position: center;
    background-size: cover;
-   min-width: 445px;
+   width: 49%;
    min-height: 590px;
+
+   @media screen and (max-width: 1100px) {
+    width: 100%;
+   }
+
+   @media screen and (max-width: 900px){
+      width: 90%;
+      flex-shrink: 0;
+   }
 `
 
 const TitleInfo = styled.div`
    font-family: 'Poppins', sans-serif;
    display: flex;
    flex-direction: column;
-   gap: 14px;
-   margin-top: 20px;
-   padding-bottom: 40px;
+   gap: 8px;
    width: 100%;
 `
 
 const Name = styled.h1`
-   font-size: 28px;
+   font-size: 24px;
+   line-height: 36px;
 `
 
 const Price = styled.span`
-
+   font-size: 16px;
+   line-height: 24px;
 `
 
 const SizesContainer = styled.div`
@@ -75,27 +107,32 @@ const SizesContainer = styled.div`
    display: flex;
    flex-direction: column;
    gap: 10px;
-   padding: 40px 0;
+
+   & h2 {
+      font-size: 12px;
+      line-height: 18px;
+   }
 `
 
 const Sizes = styled.div`
    display: flex;
-   gap: 10px;
+   gap: 8px;
 `
 
 const Size = styled.label`
    cursor: pointer;
-   border: 1px solid #e7e7e7;
-   border-radius: 5px;
-   background: #FFF;
+   background: #F9F9F9;
+   border: 1px solid #2D2B2B;
    padding: 10px;
    transition: .2s ease-in-out;
    display: flex;
    justify-content: center;
    align-items: center;
+   padding: 8px 16px;
 
    &:hover {
-      background: #ececec;
+      background: rgb(43, 43, 43);
+      color: #F9F9F9;
    }
 `
 
@@ -106,28 +143,31 @@ const SizeInput = styled.input`
 
 const AddToCart = styled.button`
    font-family: 'Poppins', sans-serif;
-   background: #000;
-   color: #FFF;
+   background: #2d2b2b;
+   opacity: ${({ productSize }) => !productSize && 0.3};
+   color: #F9F9F9;
    width: 100%;
    border: none;
-   padding: 20px 0;
-   margin: 20px 0;
-   cursor: pointer;
+   padding: 16px 32px;
+   margin-top: -24px;
+   cursor: ${({ productSize }) => productSize && 'pointer'};
 `
 
 const Overview = styled.div`
    font-family: 'Poppins', sans-serif;
    display: flex;
    flex-direction: column;
-   padding: 20px 0;
    gap: 10px;
 
    & h3 {
-      font-size: 18px;
+      font-weight: 700;
+      font-size: 12px;
+      line-height: 18px;
    }
 
    & p {
-      font-size: 14px;
+      font-size: 12px;
+      line-height: 18px;
    }
 `
 
@@ -159,7 +199,7 @@ const Product = ({ setFilters }) => {
    )
 
    const handleClick = () => {
-      dispatch(addProduct({ ...product, quantity, productSize }))
+      productSize && dispatch(addProduct({ ...product, quantity, productSize }))
    }
 
    return (
@@ -176,12 +216,11 @@ const Product = ({ setFilters }) => {
                      <Name>{product.title}</Name>
                      <Price>{`$${product.price}`}</Price>
                   </TitleInfo>
-                  <Divider></Divider>
                   <SizesContainer>
                      <h2>Select a size</h2>
                      <Sizes>
                         {product.size && product.size.map(size => {
-                           return <Size key={size} style={productSize === size ? { border: '1px solid #000' } : {}}>
+                           return <Size key={size} style={productSize === size ? { background: '#2D2B2B', color: '#F9F9F9' } : {}}>
                               {size}
                               <SizeInput
                                  type='radio'
@@ -193,14 +232,11 @@ const Product = ({ setFilters }) => {
                         })}
                      </Sizes>
                   </SizesContainer>
-                  <Divider></Divider>
-                  <AddToCart onClick={handleClick}>Add to cart</AddToCart>
-                  <Divider></Divider>
+                  <AddToCart onClick={handleClick} productSize={productSize}>{productSize ? 'Add to cart' : 'Select a size'}</AddToCart>
                   <Overview>
                      <h3>Overview</h3>
                      <p>{product.desc}</p>
                   </Overview>
-                  <Divider></Divider>
                </Right>
             </ProductPage>
          </Container>
