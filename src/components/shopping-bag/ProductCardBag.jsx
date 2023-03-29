@@ -35,6 +35,11 @@ const ProductImg = styled.div`
    width: 250px;
    background: url(${({ img }) => img});
    background-size: cover;
+
+   @media screen and (max-width: 499px){
+      width: 100%;
+      background-position: center;
+   }
 `
 
 const ContainerSection = styled.div`
