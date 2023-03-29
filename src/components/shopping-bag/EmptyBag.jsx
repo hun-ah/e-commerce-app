@@ -15,7 +15,6 @@ const Section = styled.section`
    padding: 0 20px;
    display: flex;
    flex-direction: column;
-   /* justify-content: center; */
    gap: 6px;
    color: #2D2B2B;
 
