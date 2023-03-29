@@ -1,6 +1,5 @@
 import styled from "styled-components"
 import { AiOutlineClose } from 'react-icons/ai'
-import QtyCounter from "./QtyCounter"
 
 const Container = styled.div`
    width: 100%;
@@ -11,7 +10,7 @@ const Container = styled.div`
 
 const ProductContainer = styled.div`
    display: flex;
-   gap: 4px;
+   gap: 24px;
    width: 100%;
    height: 100%;
    color: #2D2B2B;
@@ -19,6 +18,16 @@ const ProductContainer = styled.div`
       @media screen and (max-width: 499px){
       flex-direction: column;
    }
+`
+
+const Left = styled.div`
+   
+`
+
+const Right = styled.div`
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
 `
 
 const ProductImg = styled.div`
@@ -29,10 +38,9 @@ const ProductImg = styled.div`
 `
 
 const ContainerSection = styled.div`
-   height: 100%;
+   position: relative;
    display: flex;
    flex-direction: column;
-   flex: 1;
    gap: 4px;
 
    & h4 {
@@ -43,6 +51,7 @@ const ContainerSection = styled.div`
    & h5 {
       font-size: 16px;
       line-height: 24px;
+      align-self: flex-end;
    }
 
    & h6 {
@@ -64,18 +73,21 @@ const ProductCardBag = ({ img, title, price, size }) => {
       <Container>
          <Divider></Divider>
          <ProductContainer>
-            <ContainerSection style={{ flex: 1, flexShrink: 0 }}>
-               <ProductImg img={img}></ProductImg>
-            </ContainerSection>
-            <ContainerSection style={{ paddingLeft: '20px', flex: 3 }}>
-               <h4>{title}</h4>
-               <h6>Size: {size}</h6>
-               {/* <QtyCounter /> */}
-            </ContainerSection>
-            <ContainerSection style={{ justifyContent: 'space-between' }}>
-               <AiOutlineClose style={{ cursor: 'pointer', alignSelf: 'flex-end', height: '17px', width: '17px' }} />
-               <h5 style={{ alignSelf: 'flex-end' }}>${price}</h5>
-            </ContainerSection>
+            <Left style={{ flex: 0.5 }}>
+               <ContainerSection>
+                  <ProductImg img={img}></ProductImg>
+               </ContainerSection>
+            </Left>
+            <Right style={{ flex: 2 }}>
+               <ContainerSection>
+                  <h4>{title}</h4>
+                  <AiOutlineClose style={{ cursor: 'pointer', height: '17px', width: '17px', position: 'absolute', right: '0' }} />
+                  <h6>Size: {size}</h6>
+               </ContainerSection>
+               <ContainerSection style={{ justifyContent: 'space-between' }}>
+                  <h5>${price}</h5>
+               </ContainerSection>
+            </Right>
          </ProductContainer>
       </Container>
    )
