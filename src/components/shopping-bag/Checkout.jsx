@@ -6,28 +6,28 @@ const Container = styled.div`
    flex-direction: column;
    width: 100%;
    height: 400px;
-   background: #f1f1f1;
+   background: #FFF;
+   padding: 24px;
+   color: #2D2B2B;
 `
 
 const Top = styled.div`
    display: flex;
    flex-direction: column;
-   padding: 40px;
    padding-bottom: 0;
    gap: 20px;
    flex: 1;
 `
 const Divider = styled.div`
    height: 1px;
-   background: black;
-   margin: 20px 40px;
+   background: #E7E7E7;
+   margin: 20px 0px;
    flex: 0.001;
 `
 
 const Bottom = styled.div`
    display: flex;
    flex-direction: column;
-   padding: 10px 40px 40px 40px;
    flex: 1;
    justify-content: space-between;
 `
@@ -35,6 +35,13 @@ const Bottom = styled.div`
 const TextContainer = styled.div`
    display: flex;
    justify-content: space-between;
+   font-size: 12px;
+   line-height: 18px;
+
+   & h2 {
+      font-size: 24px;
+      line-height: 36px;
+   }
 `
 
 const CheckoutButton = styled.button`
@@ -42,7 +49,7 @@ const CheckoutButton = styled.button`
    font-size: 16px;
    width: 100%;
    height: 60px;
-   background: #000;
+   background: #2D2B2B;
    color: #FFF;
    border: none;
    cursor: pointer;

@@ -17,11 +17,10 @@ const Section = styled.section`
    display: flex;
    flex-direction: column;
    justify-content: center;
-   margin-top: 70px;
 
    & h1 {
-      font-size: 40px;
-      margin-bottom: 40px;
+      font-size: 24px;
+      line-height: 36px;
    }
 
    @media screen and (min-width: 1500px){
@@ -35,19 +34,31 @@ const HeadingText = styled.div`
 
 const MainContent = styled.div`
    display: flex;
-   gap: 30px;
+   gap: 20px;
+
+   @media screen and (max-width: 1100px){
+     flex-direction: column;
+   }
 `
 
 const Left = styled.div`
    display: flex;
    flex-direction: column;
    width: 70%;
-   padding: 0px 10px 20px 0;
+
+   @media screen and (max-width: 1100px){
+     width: 100%;
+   }
 `
 
 const Right = styled.div`
    padding: 20px 0 20px 10px;
    width: 40%;
+
+   @media screen and (max-width: 1100px){
+     padding: 20px 0 0px 0px;
+     width: 100%;
+   }
 `
 
 const StockedBag = () => {
