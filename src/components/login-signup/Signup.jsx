@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { useState, useEffect } from 'react'
 
 const MainContainer = styled.div`
    display: flex;
@@ -76,6 +77,40 @@ const Here = styled.span`
 `
 
 const Signup = ({ toggleViewLogin, toggleViewSignup }) => {
+   const [newUser, setNewUser] = useState({
+      fName: '',
+      lName: '',
+      email: '',
+      password: '',
+      newsletter: false
+   })
+
+   const handleChange = (e) => {
+      const { name, value, type, checked } = e.target
+      setNewUser(prevState => {
+         return { ...prevState, [name]: type === 'checkbox' ? checked : value }
+      }
+      )
+   }
+
+   const handleClick = async (e) => {
+      e.preventDefault()
+
+      try {
+         const res = await fetch(`http://localhost:5000/api/register/`, {
+            method: 'POST',
+            headers: {
+               'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newUser)
+         })
+         const data = await res.json()
+         console.log(data)
+      } catch (err) {
+         console.log(err)
+      }
+   }
+
    return (
       <MainContainer>
          <h4>New to HM&CO?</h4>
@@ -85,15 +120,39 @@ const Signup = ({ toggleViewLogin, toggleViewSignup }) => {
             <Rectangle side='right'></Rectangle>
          </SignupDetail>
          <SignupForm>
-            <InputText type='text' placeholder="First Name" />
-            <InputText type='text' placeholder="Last Name" />
-            <InputText type='text' placeholder="Email Address" />
-            <InputText type='text' placeholder="Password" />
+            <InputText
+               type='text'
+               name='fName'
+               placeholder="First Name"
+               onChange={(e) => handleChange(e)}
+            />
+            <InputText
+               type='text'
+               name='lName'
+               placeholder="Last Name"
+               onChange={(e) => handleChange(e)}
+            />
+            <InputText
+               type='text'
+               placeholder="Email Address"
+               name='email'
+               onChange={(e) => handleChange(e)}
+            />
+            <InputText
+               type='password'
+               placeholder="Password"
+               name='password'
+               onChange={(e) => handleChange(e)}
+            />
             <Newsletter>
-               <InputCheckbox type='checkbox' />
+               <InputCheckbox
+                  type='checkbox'
+                  name="newsletter"
+                  onChange={(e) => handleChange(e)}
+               />
                <p>Yes, sign me up to the HM&CO newsletter to never miss out on product launches and exclusive promotions.</p>
             </Newsletter>
-            <SignupButton>Sign up</SignupButton>
+            <SignupButton onClick={(e) => handleClick(e)}>Sign up</SignupButton>
          </SignupForm>
          <span>Already have an account? Login <Here onClick={() => {
             toggleViewLogin(true)
