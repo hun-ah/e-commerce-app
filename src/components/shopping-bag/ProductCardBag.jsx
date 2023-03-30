@@ -65,6 +65,12 @@ const ContainerSection = styled.div`
       line-height: 18px;
       color: #736F6F;
    }
+
+   @media screen and (max-width:520px){
+      & h4 {
+         width: 80%;
+      }
+   }
 `
 
 const Divider = styled.div`
