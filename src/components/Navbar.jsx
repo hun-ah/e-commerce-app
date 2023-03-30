@@ -65,11 +65,23 @@ const StyledLink = styled(Link)`
      color: #2D2B2B;
 `
 
-const SearchBarContainer = styled.div`
+const SearchBarContainer = styled.form`
    border-radius: 30px;
    background: #F9F9F9;
    display: flex;
+   flex-direction: row-reverse;
    align-items: center;
+
+   & button {
+      background: transparent;
+      margin-left: 10px;
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+   }
 `
 
 const Input = styled.input`
@@ -105,6 +117,7 @@ const Navbar = ({ setFilters }) => {
    const [viewLogin, setViewLogin] = useState(false)
    const [viewModal, setViewModal] = useState(false)
    const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+   const [search, setSearch] = useState('')
    const location = useLocation().pathname
 
    const toggleViewSignup = (bool) => {
@@ -160,8 +173,13 @@ const Navbar = ({ setFilters }) => {
                         <Right>
                            <NavListItem style={{ textDecoration: 'none' }}>
                               <SearchBarContainer>
-                                 <AiOutlineSearch style={{ marginLeft: '10px' }} />
-                                 <Input />
+                                 <Input
+                                    type='text'
+                                    onChange={(e) => setSearch(e.target.value)}
+                                 />
+                                 <button>
+                                    <AiOutlineSearch style={{ width: '16px', height: '16px' }} />
+                                 </button>
                               </SearchBarContainer>
                            </NavListItem>
                            <NavListItem
