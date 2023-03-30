@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { AiOutlineClose } from 'react-icons/ai'
+import QtyCounter from "./QtyCounter"
 
 const Container = styled.div`
    width: 100%;
@@ -73,7 +74,7 @@ const Divider = styled.div`
    margin: 24px 0px;
 `
 
-const ProductCardBag = ({ img, title, price, size }) => {
+const ProductCardBag = ({ img, title, price, size, quantity, setQuantity }) => {
    return (
       <Container>
          <Divider></Divider>
@@ -90,6 +91,7 @@ const ProductCardBag = ({ img, title, price, size }) => {
                   <h6>Size: {size}</h6>
                </ContainerSection>
                <ContainerSection style={{ justifyContent: 'space-between' }}>
+                  <QtyCounter quantity={quantity} setQuantity={setQuantity} />
                   <h5>${price}</h5>
                </ContainerSection>
             </Right>

@@ -61,7 +61,7 @@ const Right = styled.div`
    }
 `
 
-const StockedBag = () => {
+const StockedBag = ({ quantity, setQuantity }) => {
    const cart = useSelector(state => state.cart)
    console.log(cart)
 
@@ -73,7 +73,7 @@ const StockedBag = () => {
             </HeadingText>
             <MainContent>
                <Left>
-                  {cart.products.map(product => <ProductCardBag key={product._id} img={product.img[0]} title={product.title} price={product.price} size={product.productSize} />)}
+                  {cart.products.map(product => <ProductCardBag key={product._id} img={product.img[0]} title={product.title} price={product.price} size={product.productSize} quantity={quantity} setQuantity={setQuantity} />)}
                </Left>
                <Right>
                   <Checkout />

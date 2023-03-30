@@ -169,9 +169,8 @@ const Overview = styled.div`
    }
 `
 
-const Product = ({ setFilters }) => {
+const Product = ({ setFilters, quantity }) => {
    const [product, setProduct] = useState({})
-   const [quantity] = useState(1)
    const [productSize, setProductSize] = useState('')
    const location = useLocation().pathname
    const id = location.split('/')[2]

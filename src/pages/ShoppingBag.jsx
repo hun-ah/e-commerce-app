@@ -14,15 +14,15 @@ const Container = styled.div`
    margin-top: 104px;
 `
 
-const ShoppingCart = ({ setFilters }) => {
-   const quantity = useSelector(state => state.cart.quantity)
+const ShoppingCart = ({ setFilters, quantity, setQuantity }) => {
+   const cartQuantity = useSelector(state => state.cart.quantity)
 
    return (
       <>
          <Navbar setFilters={setFilters} />
          <Spacer />
          <Container>
-            {quantity < 1 ? <EmptyBag /> : <StockedBag />}
+            {cartQuantity < 1 ? <EmptyBag /> : <StockedBag quantity={quantity} setQuantity={setQuantity} />}
          </Container>
          <CategorySlider setFilters={setFilters} />
          <Footer />

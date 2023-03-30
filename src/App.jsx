@@ -11,6 +11,7 @@ import {
 import { useState } from 'react'
 
 function App() {
+  const [quantity, setQuantity] = useState(1)
   const [filters, setFilters] = useState({})
 
   return (
@@ -18,8 +19,8 @@ function App() {
       <Route path="/" element={<Homepage setFilters={setFilters} />} />
       <Route path="/productList/:category" element={<ProductList filters={filters} setFilters={setFilters} />} />
       <Route path="/ourStory" element={<OurStory setFilters={setFilters} />} />
-      <Route path="/shoppingBag" element={<ShoppingBag setFilters={setFilters} />} />
-      <Route path="/product/:id" element={<Product setFilters={setFilters} />} />
+      <Route path="/shoppingBag" element={<ShoppingBag setFilters={setFilters} quantity={quantity} setQuantity={setQuantity} />} />
+      <Route path="/product/:id" element={<Product setFilters={setFilters} quantity={quantity} />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
