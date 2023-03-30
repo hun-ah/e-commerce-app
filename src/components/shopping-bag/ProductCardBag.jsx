@@ -91,7 +91,7 @@ const ProductCardBag = ({ img, title, price, size, quantity, setQuantity }) => {
                   <h6>Size: {size}</h6>
                </ContainerSection>
                <ContainerSection style={{ justifyContent: 'space-between' }}>
-                  <QtyCounter quantity={quantity} setQuantity={setQuantity} />
+                  {/* <QtyCounter quantity={quantity} setQuantity={setQuantity} /> */}
                   <h5>${price}</h5>
                </ContainerSection>
             </Right>
