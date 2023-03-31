@@ -1,4 +1,7 @@
 import styled from "styled-components"
+import { useState } from 'react'
+import { login } from "../../redux/apiCalls"
+import { useDispatch } from 'react-redux'
 
 const MainContainer = styled.div`
    display: flex;
@@ -59,6 +62,15 @@ const Here = styled.span`
 `
 
 const Login = ({ toggleViewLogin, toggleViewSignup }) => {
+   const [email, setEmail] = useState('')
+   const [password, setPassword] = useState('')
+   const dispatch = useDispatch()
+
+   const handleLogin = (e) => {
+      e.preventDefault()
+      login(dispatch, { email: email, password: password })
+   }
+
    return (
       <MainContainer>
          <h4>Welcome back!</h4>
@@ -68,9 +80,9 @@ const Login = ({ toggleViewLogin, toggleViewSignup }) => {
             <Rectangle side='right'></Rectangle>
          </SignupDetail>
          <SignupForm>
-            <InputText type='text' placeholder="Email Address" />
-            <InputText type='text' placeholder="Password" />
-            <SignupButton>Login</SignupButton>
+            <InputText type='text' placeholder="Email Address" onChange={(e) => setEmail(e.target.value)} />
+            <InputText type='text' placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+            <SignupButton onClick={handleLogin}>Login</SignupButton>
          </SignupForm>
          <span>Don't have an account? Register <Here onClick={() => {
             toggleViewLogin(false)
