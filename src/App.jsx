@@ -4,6 +4,7 @@ import Product from "./pages/Product";
 import OurStory from "./pages/OurStory";
 import ShoppingBag from "./pages/ShoppingBag";
 import NotFound from "./pages/NotFound"
+import PaymentSuccess from "./pages/PaymentSuccess"
 import {
   Routes,
   Route,
@@ -22,6 +23,7 @@ function App() {
       <Route path="/shoppingBag" element={<ShoppingBag setFilters={setFilters} quantity={quantity} setQuantity={setQuantity} />} />
       <Route path="/product/:id" element={<Product setFilters={setFilters} quantity={quantity} />} />
       <Route path="*" element={<NotFound />} />
+      <Route path="/success" element={<PaymentSuccess />} />
     </Routes>
   );
 }

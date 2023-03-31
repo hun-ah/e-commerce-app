@@ -1,5 +1,9 @@
 import styled from "styled-components"
 import { useSelector } from 'react-redux'
+import StripeCheckout from 'react-stripe-checkout'
+import { useState, useEffect } from "react"
+import { useNavigate } from 'react-router-dom'
+const KEY = process.env.REACT_APP_STRIPE
 
 const Container = styled.div`
    display: flex;
@@ -59,7 +63,19 @@ const Checkout = () => {
    const total = useSelector(state => state.cart.total)
    const shipping = total < 1 ? 0 : 10
    const taxes = total * 0.13
+   const finalTotal = (total + shipping + taxes).toFixed(2)
+   const [stripeToken, setStripeToken] = useState(null)
+   const navigate = useNavigate()
 
+   const onToken = (token) => {
+      setStripeToken(token)
+   }
+
+   const success = () => navigate('/success')
+
+   stripeToken && success()
+
+   console.log(stripeToken)
    return (
       <Container>
          <Top>
@@ -83,9 +99,19 @@ const Checkout = () => {
          <Bottom>
             <TextContainer>
                <span>Estimated Total</span>
-               <span>${(total + shipping + taxes).toFixed(2)}</span>
+               <span>${finalTotal}</span>
             </TextContainer>
-            <CheckoutButton>Checkout</CheckoutButton>
+            <StripeCheckout
+               name="HM&CO"
+               billingAddress
+               shippingAddress
+               description={`Your total is $${finalTotal}`}
+               amount={finalTotal * 100}
+               token={onToken}
+               stripeKey={KEY}
+            >
+               <CheckoutButton>Checkout</CheckoutButton>
+            </StripeCheckout>
          </Bottom>
       </Container>
    )
