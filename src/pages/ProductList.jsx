@@ -10,10 +10,11 @@ const Container = styled.div`
    width: 100%;
    min-height: 100vh;
    display: flex;
-   justify-content: center;
+   /* justify-content: center; */
 `
 
 const ProductSection = styled.section`
+   width: 100%;
    display: flex;
    flex-direction: column;
 
