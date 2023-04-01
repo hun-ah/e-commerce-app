@@ -1,8 +1,8 @@
 import styled from "styled-components"
 import { useSelector } from 'react-redux'
 import StripeCheckout from 'react-stripe-checkout'
-import { useState, useEffect } from "react"
 import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from "react"
 const KEY = process.env.REACT_APP_STRIPE
 
 const Container = styled.div`
@@ -59,23 +59,28 @@ const CheckoutButton = styled.button`
    cursor: pointer;
 `
 
-const Checkout = () => {
+const Checkout = ({ stripeToken, setStripeToken, tokenForCompare, setTokenForCompare }) => {
    const total = useSelector(state => state.cart.total)
    const shipping = total < 1 ? 0 : 10
    const taxes = total * 0.13
    const finalTotal = (total + shipping + taxes).toFixed(2)
-   const [stripeToken, setStripeToken] = useState(null)
    const navigate = useNavigate()
 
    const onToken = (token) => {
       setStripeToken(token)
+      setTokenForCompare(token)
    }
 
-   const success = () => navigate('/success')
+   // if a token has already been made from a previous purchase, this allows another purchase to go through without immediately redirecting to the success page 
+   useEffect(() => {
+      if (stripeToken && tokenForCompare) {
+         if (stripeToken.id == tokenForCompare.id) {
+            navigate('/success')
+         }
+      }
+   }, [navigate, stripeToken])
 
-   stripeToken && success()
 
-   console.log(stripeToken)
    return (
       <Container>
          <Top>
