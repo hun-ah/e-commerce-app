@@ -61,7 +61,7 @@ const Right = styled.div`
    }
 `
 
-const StockedBag = ({ quantity, setQuantity }) => {
+const StockedBag = ({ quantity, setQuantity, stripeToken, setStripeToken, tokenForCompare, setTokenForCompare }) => {
    const cart = useSelector(state => state.cart)
    console.log(cart)
 
@@ -76,7 +76,7 @@ const StockedBag = ({ quantity, setQuantity }) => {
                   {cart.products.map(product => <ProductCardBag key={product._id} img={product.img[0]} title={product.title} price={product.price} size={product.productSize} quantity={quantity} setQuantity={setQuantity} />)}
                </Left>
                <Right>
-                  <Checkout />
+                  <Checkout stripeToken={stripeToken} setStripeToken={setStripeToken} tokenForCompare={tokenForCompare} setTokenForCompare={setTokenForCompare} />
                </Right>
             </MainContent>
          </Section>
