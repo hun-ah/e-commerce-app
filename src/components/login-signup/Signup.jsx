@@ -63,12 +63,12 @@ const InputCheckbox = styled.input`
 `
 
 const SignupButton = styled.button`
-   background: #000;
+   background: rgb(45, 43, 43, 0.3);
    color: #FFF;
    border: none;
    padding: 20px;
    font-size: 16px;
-   cursor: pointer;
+   /* cursor: pointer; */
 `
 
 const Here = styled.span`
@@ -152,7 +152,8 @@ const Signup = ({ toggleViewLogin, toggleViewSignup }) => {
                />
                <p>Yes, sign me up to the HM&CO newsletter to never miss out on product launches and exclusive promotions.</p>
             </Newsletter>
-            <SignupButton onClick={(e) => handleClick(e)}>Sign up</SignupButton>
+            <SignupButton onClick={(e) => handleClick(e)}>Functionality under construction &#128119;</SignupButton>
+            <p style={{ fontSize: '10px' }}>*you can still checkout as a guest</p>
          </SignupForm>
          <span>Already have an account? Login <Here onClick={() => {
             toggleViewLogin(true)

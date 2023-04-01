@@ -48,12 +48,12 @@ const InputText = styled.input`
 `
 
 const SignupButton = styled.button`
-   background: #000;
+   background: rgb(45, 43, 43, 0.3);
    color: #FFF;
    border: none;
    padding: 20px;
    font-size: 16px;
-   cursor: pointer;
+   /* cursor: pointer; */
 `
 
 const Here = styled.span`
@@ -82,7 +82,8 @@ const Login = ({ toggleViewLogin, toggleViewSignup }) => {
          <SignupForm>
             <InputText type='text' placeholder="Email Address" onChange={(e) => setEmail(e.target.value)} />
             <InputText type='text' placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-            <SignupButton onClick={handleLogin}>Login</SignupButton>
+            <SignupButton onClick={handleLogin}>Functionality under construction &#128119;</SignupButton>
+            <p style={{ fontSize: '10px' }}>*you can still checkout as a guest</p>
          </SignupForm>
          <span>Don't have an account? Register <Here onClick={() => {
             toggleViewLogin(false)
