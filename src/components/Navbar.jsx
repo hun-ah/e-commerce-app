@@ -175,6 +175,7 @@ const Navbar = ({ setFilters }) => {
                               <SearchBarContainer>
                                  <Input
                                     type='text'
+                                    placeholder='Search'
                                     onChange={(e) => setSearch(e.target.value)}
                                  />
                                  <button>
