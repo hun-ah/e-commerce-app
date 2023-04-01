@@ -3,6 +3,9 @@ import NavBar from '../components/Navbar'
 import Footer from '../components/Footer'
 import Spacer from '../components/Spacer'
 import CategorySlider from '../components/homepage/CategorySlider'
+import { emptyCart } from '../redux/cartRedux'
+import { useDispatch } from 'react-redux'
+import { useEffect } from "react"
 
 const Container = styled.div`
    width: 100%;
@@ -31,16 +34,25 @@ const SuccessPage = styled.div`
    }
 `
 
-const PaymentSuccess = ({ stripeToken, setFilters }) => {
+const PaymentSuccess = ({ stripeToken, setFilters, setTokenForCompare }) => {
+   const name = stripeToken.card.name.split(' ')[0]
+   const email = stripeToken.email
+   const dispatch = useDispatch()
+
+   useEffect(() => {
+      dispatch(emptyCart())
+      setTokenForCompare(null)
+   }, [])
+
    return (
       <>
-         <NavBar />
+         <NavBar setFilters={setFilters} />
          <Spacer />
          <Container>
             <SuccessPage>
                <h1>{`Order #${Math.floor(Math.random() * 10000000)}`}</h1>
-               <h2>{`Thanks for your order, ${stripeToken.card.name.split(' ')[0]}!`}</h2>
-               <h3>{`An email confirmation has been sent to ${stripeToken.email}`}</h3>
+               <h2>{`Thanks for your order, ${name}!`}</h2>
+               <h3>{`An email confirmation has been sent to ${email}`}</h3>
             </SuccessPage>
          </Container>
          <CategorySlider setFilters={setFilters} />
