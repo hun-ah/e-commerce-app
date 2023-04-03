@@ -7,9 +7,16 @@ const MainContainer = styled.div`
    align-items: center;
    width: 60%;
    margin: auto;
+   color: #2d2b2b;
+   padding: 30px 0;
 
    & h4 {
-      font-size: 30px;
+      font-size: 24px;
+      line-height: 36px;
+   }
+
+   @media screen and (max-width: 600px){
+      width: 70%;
    }
 `
 
@@ -17,47 +24,62 @@ const SignupDetail = styled.div`
    font-size: 12px;
    align-items: center;
    justify-content: center;
-   margin-top: 40px;
+   margin-top: 30px;
    display: flex;
    width: 100%;
+   font-size: 12px;
+   line-height: 18px;
 `
 
 const Rectangle = styled.div`
    width: 40%;
-   background: #000;
+   background: #B9B9B9;
    height: 1px;
-   margin-right: ${({ side }) => side === 'left' && 10}px;
-   margin-left: ${({ side }) => side === 'right' && 10}px;
 `
 
 const SignupForm = styled.form`
    display: flex;
    flex-direction: column;
-   padding: 40px 0;
-   gap: 20px;
+   padding: 20px 0;
+   gap: 24px;
    width: 100%;
+
+   & label {
+      font-size: 12px;
+      line-height: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+   }
 `
 
 const InputText = styled.input`
-   text-indent: 4px;
-   padding: 10px;
-   border: 1px solid #c8c8c8;
+   font-family: 'Poppins', sans-serif;
+   padding: 16px;
+   background: #F9F9F9;
+   border: none;
+   
+   &::placeholder {
+    color: #B9B9B9;
+    font-size: 16px;
+    line-height: 24px;
+   }
 `
 
 const Newsletter = styled.div`
    display: flex;
    gap: 10px;
-   padding: 10px 0;
 
    & p {
       font-size: 12px;
+      line-height: 18px;
       width: 90%;
    }
 `
 
 const InputCheckbox = styled.input`
-   height: 20px;
-   width: 20px;
+   height: 16px;
+   width: 16px;
    accent-color: #000;
    cursor: pointer;
 `
@@ -66,14 +88,14 @@ const SignupButton = styled.button`
    background: rgb(45, 43, 43, 0.3);
    color: #FFF;
    border: none;
-   padding: 20px;
+   padding: 16px 32px;
    font-size: 16px;
    /* cursor: pointer; */
 `
 
 const Here = styled.span`
    cursor: pointer;
-   color: blue;
+   text-decoration: underline;
 `
 
 const Signup = ({ toggleViewLogin, toggleViewSignup }) => {
@@ -115,50 +137,62 @@ const Signup = ({ toggleViewLogin, toggleViewSignup }) => {
       <MainContainer>
          <h4>New to HM&CO?</h4>
          <SignupDetail>
-            <Rectangle side='left'></Rectangle>
-            <h5>Sign-up</h5>
-            <Rectangle side='right'></Rectangle>
+            <Rectangle></Rectangle>
+            <h5 style={{ width: '20%', textAlign: 'center' }}>Sign up</h5>
+            <Rectangle></Rectangle>
          </SignupDetail>
          <SignupForm>
-            <InputText
-               type='text'
-               name='fName'
-               placeholder="First Name"
-               onChange={(e) => handleChange(e)}
-            />
-            <InputText
-               type='text'
-               name='lName'
-               placeholder="Last Name"
-               onChange={(e) => handleChange(e)}
-            />
-            <InputText
-               type='text'
-               placeholder="Email Address"
-               name='email'
-               onChange={(e) => handleChange(e)}
-            />
-            <InputText
-               type='password'
-               placeholder="Password"
-               name='password'
-               onChange={(e) => handleChange(e)}
-            />
+            <label htmlFor="fName">First name*
+               <InputText
+                  type='text'
+                  name='fName'
+                  id='fName'
+                  placeholder="Enter first name"
+                  onChange={(e) => handleChange(e)}
+               />
+            </label>
+            <label htmlFor="lName">Last name*
+               <InputText
+                  type='text'
+                  name='lName'
+                  id='lName'
+                  placeholder="Enter last name"
+                  onChange={(e) => handleChange(e)}
+               />
+            </label>
+            <label htmlFor="email">Email*
+               <InputText
+                  type='text'
+                  placeholder="Enter email"
+                  name='email'
+                  id='email'
+                  onChange={(e) => handleChange(e)}
+               />
+            </label>
+            <label htmlFor="password">Password*
+               <InputText
+                  type='password'
+                  placeholder="Enter password"
+                  name='password'
+                  id='password'
+                  onChange={(e) => handleChange(e)}
+               />
+            </label>
             <Newsletter>
                <InputCheckbox
                   type='checkbox'
                   name="newsletter"
                   onChange={(e) => handleChange(e)}
                />
-               <p>Yes, sign me up to the HM&CO newsletter to never miss out on product launches and exclusive promotions.</p>
+               <p>Yes, sign me up to the HM&CO newsletter to never miss out on product launches and promotions.</p>
             </Newsletter>
             <SignupButton onClick={(e) => handleClick(e)}>Functionality under construction &#128119;</SignupButton>
-            <p style={{ fontSize: '10px' }}>*you can still checkout as a guest</p>
+            <p style={{ fontSize: '10px', marginTop: '-16px' }}>*you can still checkout as a guest</p>
          </SignupForm>
-         <span>Already have an account? Login <Here onClick={() => {
+         <span>Already have an account? <Here onClick={() => {
             toggleViewLogin(true)
             toggleViewSignup(false)
-         }}>here</Here></span>
+         }}>Log in</Here></span>
       </MainContainer>
    )
 }

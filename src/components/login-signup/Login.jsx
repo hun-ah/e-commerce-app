@@ -9,10 +9,17 @@ const MainContainer = styled.div`
    align-items: center;
    justify-content: center;
    width: 60%;
+   color: #2d2b2b;
+   padding: 90px 0;
    margin: auto;
 
    & h4 {
-      font-size: 30px;
+      font-size: 24px;
+      line-height: 36px;
+   }
+
+   @media screen and (max-width: 600px){
+      width: 70%;
    }
 `
 
@@ -20,45 +27,60 @@ const SignupDetail = styled.div`
    font-size: 12px;
    align-items: center;
    justify-content: center;
-   margin-top: 40px;
+   margin-top: 30px;
    display: flex;
    width: 100%;
+   font-size: 12px;
+   line-height: 18px;
 `
 
 const Rectangle = styled.div`
    width: 40%;
-   background: #000;
+   background: #B9B9B9;
    height: 1px;
-   margin-right: ${({ side }) => side === 'left' && 10}px;
-   margin-left: ${({ side }) => side === 'right' && 10}px;
 `
 
 const SignupForm = styled.form`
    display: flex;
    flex-direction: column;
-   padding: 40px 0;
-   gap: 20px;
+   padding: 20px 0;
+   gap: 24px;
    width: 100%;
+
+    & label {
+      font-size: 12px;
+      line-height: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+   }
 `
 
 const InputText = styled.input`
-   text-indent: 4px;
-   padding: 10px;
-   border: 1px solid #c8c8c8;
+   font-family: 'Poppins', sans-serif;
+   padding: 16px;
+   background: #F9F9F9;
+   border: none;
+   
+   &::placeholder {
+    color: #B9B9B9;
+    font-size: 16px;
+    line-height: 24px;
+   }
 `
 
 const SignupButton = styled.button`
    background: rgb(45, 43, 43, 0.3);
    color: #FFF;
    border: none;
-   padding: 20px;
+   padding: 16px 32px;
    font-size: 16px;
    /* cursor: pointer; */
 `
 
 const Here = styled.span`
    cursor: pointer;
-   color: blue;
+   text-decoration: underline;
 `
 
 const Login = ({ toggleViewLogin, toggleViewSignup }) => {
@@ -75,9 +97,9 @@ const Login = ({ toggleViewLogin, toggleViewSignup }) => {
       <MainContainer>
          <h4>Welcome back!</h4>
          <SignupDetail>
-            <Rectangle side='left'></Rectangle>
-            <h5>Login</h5>
-            <Rectangle side='right'></Rectangle>
+            <Rectangle></Rectangle>
+            <h5 style={{ width: '20%', textAlign: 'center' }}>Login</h5>
+            <Rectangle></Rectangle>
          </SignupDetail>
          <SignupForm>
             <InputText type='text' placeholder="Email Address" onChange={(e) => setEmail(e.target.value)} />

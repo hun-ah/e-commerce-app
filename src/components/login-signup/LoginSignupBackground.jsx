@@ -23,26 +23,30 @@ const Modal = styled.div`
    display: flex;
    justify-content: space-between;
    flex-direction: column;
-   height: 700px;
-   width: 700px;
    background: #FFF;
    top: 50%;
    left: 50%;
    transform: translate(-50%, -50%);
+   width: 670px;
 
-   @media screen and (max-width: 800px){
+   @media screen and (max-width: 700px){
       height: 100%;
       width: 100%;
    }
 `
 
 const CloseContainer = styled.div`
+   position: absolute;
+   right: 0;
    padding: 20px 20px 0px 20px;
    display: flex;
    justify-content: flex-end;
 `
 
 const LoginSignupBackground = ({ viewModal, toggleViewModal, viewLogin, toggleViewLogin, viewSignup, toggleViewSignup }) => {
+
+   document.body.style.overflow = viewModal ? "hidden" : "visible"
+
    return (
       <Container style={!viewModal ? { display: 'none' } : {}}>
          <Background>
