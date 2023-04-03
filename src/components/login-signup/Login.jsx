@@ -32,6 +32,11 @@ const SignupDetail = styled.div`
    width: 100%;
    font-size: 12px;
    line-height: 18px;
+
+   & h5 {
+      width: 20%;
+      text-align: center;
+   }
 `
 
 const Rectangle = styled.div`
@@ -98,19 +103,33 @@ const Login = ({ toggleViewLogin, toggleViewSignup }) => {
          <h4>Welcome back!</h4>
          <SignupDetail>
             <Rectangle></Rectangle>
-            <h5 style={{ width: '20%', textAlign: 'center' }}>Login</h5>
+            <h5>Login</h5>
             <Rectangle></Rectangle>
          </SignupDetail>
          <SignupForm>
-            <InputText type='text' placeholder="Email Address" onChange={(e) => setEmail(e.target.value)} />
-            <InputText type='text' placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+            <label htmlFor="email">Email*
+               <InputText
+                  type='text'
+                  placeholder="Email Address"
+                  id="email"
+                  onChange={(e) => setEmail(e.target.value)}
+               />
+            </label>
+            <label htmlFor="email">Email*
+               <InputText
+                  type='text'
+                  placeholder="Password"
+                  id="password"
+                  onChange={(e) => setPassword(e.target.value)}
+               />
+            </label>
             <SignupButton onClick={handleLogin}>Functionality under construction &#128119;</SignupButton>
-            <p style={{ fontSize: '10px' }}>*you can still checkout as a guest</p>
+            <p style={{ fontSize: '10px', marginTop: '-16px' }}>*you can still checkout as a guest</p>
          </SignupForm>
-         <span>Don't have an account? Register <Here onClick={() => {
+         <span>Don't have an account? <Here onClick={() => {
             toggleViewLogin(false)
             toggleViewSignup(true)
-         }}>here</Here></span>
+         }}>Sign up</Here></span>
       </MainContainer>
    )
 }

@@ -29,6 +29,17 @@ const SignupDetail = styled.div`
    width: 100%;
    font-size: 12px;
    line-height: 18px;
+
+   & h5 {
+      width: 20%;
+      text-align: center;
+   }
+
+   @media screen and (max-width: 499px){
+      & h5 {
+         margin: 0 10px;
+      }
+   }
 `
 
 const Rectangle = styled.div`
@@ -138,7 +149,7 @@ const Signup = ({ toggleViewLogin, toggleViewSignup }) => {
          <h4>New to HM&CO?</h4>
          <SignupDetail>
             <Rectangle></Rectangle>
-            <h5 style={{ width: '20%', textAlign: 'center' }}>Sign up</h5>
+            <h5>Sign up</h5>
             <Rectangle></Rectangle>
          </SignupDetail>
          <SignupForm>
