@@ -28,6 +28,7 @@ const Modal = styled.div`
    left: 50%;
    transform: translate(-50%, -50%);
    width: 670px;
+   overflow: scroll;
 
    @media screen and (max-width: 700px){
       height: 100%;
