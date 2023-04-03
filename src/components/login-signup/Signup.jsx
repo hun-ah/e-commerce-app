@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 const MainContainer = styled.div`
    display: flex;
