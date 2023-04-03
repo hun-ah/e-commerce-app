@@ -5,7 +5,7 @@ import { AiOutlineSearch } from 'react-icons/ai'
 import { BiShoppingBag } from 'react-icons/bi'
 import navText from '../data/navText'
 import LoginSignupBackground from './login-signup/LoginSignupBackground'
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
@@ -119,6 +119,7 @@ const Navbar = ({ setFilters }) => {
    const [windowWidth, setWindowWidth] = useState(window.innerWidth)
    const [search, setSearch] = useState('')
    const location = useLocation().pathname
+   const navigate = useNavigate()
 
    const toggleViewSignup = (bool) => {
       setViewSignup(bool)
@@ -149,6 +150,22 @@ const Navbar = ({ setFilters }) => {
 
    document.body.style.overflow = viewModal ? "hidden" : "visible"
 
+   const fetchData = async () => {
+      try {
+         const res = await fetch(`http://localhost:5000/api/product/search/${search}`)
+         const data = await res.json()
+         console.log(data)
+      } catch (err) {
+         console.log(err)
+      }
+   }
+
+   const productSearch = (e) => {
+      e.preventDefault()
+      fetchData()
+      navigate(`/productList/${search}`)
+   }
+
    return (
       <>
          {windowWidth > 770 ?
@@ -172,7 +189,7 @@ const Navbar = ({ setFilters }) => {
                         </Left>
                         <Right>
                            <NavListItem style={{ textDecoration: 'none' }}>
-                              <SearchBarContainer>
+                              <SearchBarContainer onSubmit={(e) => productSearch(e)}>
                                  <Input
                                     type='text'
                                     placeholder='Search'
