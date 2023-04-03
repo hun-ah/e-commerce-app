@@ -12,7 +12,6 @@ function App() {
   const [quantity, setQuantity] = useState(1)
   const [filters, setFilters] = useState({})
   const [stripeToken, setStripeToken] = useState(null)
-  const [filteredProducts, setFilteredProducts] = useState([])
   // used for comparing against stripeToken when going back to checkout page
   const [tokenForCompare, setTokenForCompare] = useState(null)
 
