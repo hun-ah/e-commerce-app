@@ -25,7 +25,7 @@ function App() {
       <Route path="/ourStory" element={<OurStory setFilters={setFilters} />} />
       <Route path="/shoppingBag" element={<ShoppingBag setFilters={setFilters} quantity={quantity} setQuantity={setQuantity} stripeToken={stripeToken} setStripeToken={setStripeToken} tokenForCompare={tokenForCompare} setTokenForCompare={setTokenForCompare} />} />
       <Route path="/product/:id" element={<Product setFilters={setFilters} quantity={quantity} />} />
-      <Route path="*" element={<NotFound />} />
+      <Route path="*" element={<NotFound setFilters={setFilters} />} />
       <Route path="/success" element={<PaymentSuccess stripeToken={stripeToken} setStripeToken={setStripeToken} setTokenForCompare={setTokenForCompare} setFilters={setFilters} />} />
     </Routes>
   );
