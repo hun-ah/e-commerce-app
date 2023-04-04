@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 import { useLocation } from "react-router-dom"
 import { addProduct } from '../redux/cartRedux'
 import { useDispatch } from 'react-redux'
+import { v4 as uuidv4 } from 'uuid'
 
 const Container = styled.div`
    width: 100%;
@@ -172,6 +173,7 @@ const Overview = styled.div`
 const Product = ({ setFilters, quantity, searched, setSearched }) => {
    const [product, setProduct] = useState({})
    const [productSize, setProductSize] = useState('')
+   const [stateId, setStateId] = useState(uuidv4())
    const location = useLocation().pathname
    const id = location.split('/')[2]
    const dispatch = useDispatch()
@@ -196,7 +198,8 @@ const Product = ({ setFilters, quantity, searched, setSearched }) => {
    )
 
    const handleClick = () => {
-      productSize && dispatch(addProduct({ ...product, quantity, productSize }))
+      setStateId(uuidv4())
+      productSize && dispatch(addProduct({ ...product, quantity, productSize, stateId }))
    }
 
    return (
