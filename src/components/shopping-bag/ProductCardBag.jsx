@@ -93,7 +93,8 @@ const ProductCardBag = ({ img, title, price, size, quantity, setQuantity }) => {
             <Right style={{ flex: 2 }}>
                <ContainerSection>
                   <h4>{title}</h4>
-                  <AiOutlineClose style={{ cursor: 'pointer', height: '17px', width: '17px', position: 'absolute', right: '0' }} />
+                  <AiOutlineClose
+                     style={{ cursor: 'pointer', height: '17px', width: '17px', position: 'absolute', right: '0' }} />
                   <h6>Size: {size}</h6>
                </ContainerSection>
                <ContainerSection style={{ justifyContent: 'space-between' }}>
