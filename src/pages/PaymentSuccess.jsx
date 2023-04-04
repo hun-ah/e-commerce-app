@@ -34,7 +34,7 @@ const SuccessPage = styled.div`
    }
 `
 
-const PaymentSuccess = ({ stripeToken, setFilters, setTokenForCompare }) => {
+const PaymentSuccess = ({ stripeToken, setFilters, setTokenForCompare, searched, setSearched }) => {
    const name = stripeToken.card.name.split(' ')[0]
    const email = stripeToken.email
    const dispatch = useDispatch()
@@ -46,7 +46,7 @@ const PaymentSuccess = ({ stripeToken, setFilters, setTokenForCompare }) => {
 
    return (
       <>
-         <NavBar setFilters={setFilters} />
+         <NavBar setFilters={setFilters} searched={searched} setSearched={setSearched} />
          <Spacer />
          <Container>
             <SuccessPage>

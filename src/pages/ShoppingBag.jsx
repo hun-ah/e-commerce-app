@@ -14,12 +14,12 @@ const Container = styled.div`
    margin-top: 104px;
 `
 
-const ShoppingCart = ({ setFilters, quantity, setQuantity, stripeToken, setStripeToken, tokenForCompare, setTokenForCompare }) => {
+const ShoppingCart = ({ setFilters, quantity, setQuantity, stripeToken, setStripeToken, tokenForCompare, setTokenForCompare, searched, setSearched }) => {
    const cartQuantity = useSelector(state => state.cart.quantity)
 
    return (
       <>
-         <Navbar setFilters={setFilters} />
+         <Navbar setFilters={setFilters} searched={searched} setSearched={setSearched} />
          <Spacer />
          <Container>
             {cartQuantity < 1 ? <EmptyBag /> : <StockedBag quantity={quantity} setQuantity={setQuantity} stripeToken={stripeToken} setStripeToken={setStripeToken} tokenForCompare={tokenForCompare} setTokenForCompare={setTokenForCompare} />}

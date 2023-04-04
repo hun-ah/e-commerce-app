@@ -45,10 +45,10 @@ const StyledLink = styled(Link)`
       cursor: pointer;
 `
 
-const NotFound = ({ setFilters }) => {
+const NotFound = ({ setFilters, searched, setSearched }) => {
    return (
       <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
-         <Navbar setFilters={setFilters} />
+         <Navbar setFilters={setFilters} searched={searched} setSearched={setSearched} />
          <Spacer />
          <Container>
             <Section>

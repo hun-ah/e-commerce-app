@@ -169,7 +169,7 @@ const Overview = styled.div`
    }
 `
 
-const Product = ({ setFilters, quantity }) => {
+const Product = ({ setFilters, quantity, searched, setSearched }) => {
    const [product, setProduct] = useState({})
    const [productSize, setProductSize] = useState('')
    const location = useLocation().pathname
@@ -201,7 +201,7 @@ const Product = ({ setFilters, quantity }) => {
 
    return (
       <>
-         <Navbar setFilters={setFilters} />
+         <Navbar setFilters={setFilters} searched={searched} setSearched={setSearched} />
          <Spacer />
          <Container>
             <ProductPage>

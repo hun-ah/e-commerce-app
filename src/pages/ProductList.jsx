@@ -87,7 +87,7 @@ const Products = styled.div`
    margin-bottom: calc(104px - 20px);
 `
 
-const ProductList = ({ filters, setFilters }) => {
+const ProductList = ({ filters, setFilters, searched, setSearched }) => {
    const location = useLocation()
    const category = location.pathname.split('/')[2]
    const [sortBy, setSortedBy] = useState('newest')
@@ -144,7 +144,7 @@ const ProductList = ({ filters, setFilters }) => {
 
    return (
       <>
-         <NavBar setFilters={setFilters} />
+         <NavBar setFilters={setFilters} searched={searched} setSearched={setSearched} />
          <Spacer />
          <Container>
             <ProductSection>

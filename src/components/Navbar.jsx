@@ -111,7 +111,7 @@ const NotificationBadge = styled.div`
    left: 12px;
 `
 
-const Navbar = ({ setFilters }) => {
+const Navbar = ({ setFilters, searched, setSearched }) => {
    const quantity = useSelector(state => state.cart.quantity)
    const [viewSignup, setViewSignup] = useState(false)
    const [viewLogin, setViewLogin] = useState(false)
@@ -154,7 +154,7 @@ const Navbar = ({ setFilters }) => {
       try {
          const res = await fetch(`http://localhost:5000/api/product/search/${search}`)
          const data = await res.json()
-         console.log(data)
+         setSearched(data)
       } catch (err) {
          console.log(err)
       }
@@ -163,7 +163,7 @@ const Navbar = ({ setFilters }) => {
    const productSearch = (e) => {
       e.preventDefault()
       fetchData()
-      navigate(`/productList/${search}`)
+      navigate(`/search`)
    }
 
    return (
@@ -230,6 +230,10 @@ const Navbar = ({ setFilters }) => {
                toggleViewModal={toggleViewModal}
                toggleViewLogin={toggleViewLogin}
                toggleViewSignup={toggleViewSignup}
+               searched={searched}
+               setSearched={setSearched}
+               search={search}
+               setSearch={setSearch}
             />
          }
          <LoginSignupBackground

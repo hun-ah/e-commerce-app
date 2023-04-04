@@ -56,10 +56,10 @@ const Heading2 = styled.h2`
    }
 `
 
-const OurStory = ({ setFilters }) => {
+const OurStory = ({ setFilters, searched, setSearched }) => {
    return (
       <>
-         <Navbar setFilters={setFilters} />
+         <Navbar setFilters={setFilters} searched={searched} setSearched={setSearched} />
          <Spacer />
          <Header>
             <Heading1>Our Story</Heading1>

@@ -2,7 +2,7 @@ import styled from "styled-components"
 import navText from '../data/navText'
 import Burger from "./Burger"
 import { useState } from 'react'
-import { Link, useLocation } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { AiOutlineSearch } from 'react-icons/ai'
 import { BiShoppingBag } from 'react-icons/bi'
 
@@ -132,10 +132,11 @@ const SignupLogin = styled.div`
    line-height: 24px;
 `
 
-const MobileNav = ({ setFilters, toggleViewModal, toggleViewSignup, toggleViewLogin, quantity }) => {
+const MobileNav = ({ setFilters, toggleViewModal, toggleViewSignup, toggleViewLogin, quantity, searched, setSearched, search, setSearch }) => {
    const [showSearchBar, setShowSearchBar] = useState(false)
    const [openBurger, setOpenBurger] = useState(false)
    const location = useLocation().pathname
+   const navigate = useNavigate()
 
    document.body.style.overflow = openBurger ? "hidden" : "visible"
 
@@ -154,6 +155,22 @@ const MobileNav = ({ setFilters, toggleViewModal, toggleViewSignup, toggleViewLo
    const handleRegisterLogin = () => {
       setOpenBurger(false)
       toggleViewModal(true)
+   }
+
+   const fetchData = async () => {
+      try {
+         const res = await fetch(`http://localhost:5000/api/product/search/${search}`)
+         const data = await res.json()
+         setSearched(data)
+      } catch (err) {
+         console.log(err)
+      }
+   }
+
+   const productSearch = (e) => {
+      e.preventDefault()
+      fetchData()
+      navigate(`/search`)
    }
 
    return (
@@ -193,9 +210,16 @@ const MobileNav = ({ setFilters, toggleViewModal, toggleViewSignup, toggleViewLo
                </NavList>
             </Nav>
          </NavContainer>
-         {showSearchBar ? <Input
-            placeholder="Search"
-         /> : null}
+         {showSearchBar ?
+            <>
+               <form onSubmit={(e) => productSearch(e)}>
+                  <Input
+                     type='text'
+                     placeholder="Search"
+                     onChange={(e) => setSearch(e.target.value)}
+                  />
+               </form>
+            </> : null}
          <MobileMenu open={openBurger}>
             <StyledLink to='/productList/all' onClick={handleMobileLinks}>
                <NavListItem>Clothing</NavListItem>

@@ -5,6 +5,7 @@ import OurStory from "./pages/OurStory";
 import ShoppingBag from "./pages/ShoppingBag";
 import NotFound from "./pages/NotFound"
 import PaymentSuccess from "./pages/PaymentSuccess"
+import SearchedProducts from "./pages/SearchedProducts";
 import { Routes, Route } from "react-router-dom";
 import { useState } from 'react'
 
@@ -12,20 +13,27 @@ function App() {
   const [quantity, setQuantity] = useState(1)
   const [filters, setFilters] = useState({})
   const [stripeToken, setStripeToken] = useState(null)
+  const [searched, setSearched] = useState([])
   // used for comparing against stripeToken when going back to checkout page
   const [tokenForCompare, setTokenForCompare] = useState(null)
 
   return (
     <Routes>
       <Route path="/" element={<Homepage
-        setFilters={setFilters} />}
+        setFilters={setFilters}
+        searched={searched}
+        setSearched={setSearched} />}
       />
       <Route path="/productList/:category" element={<ProductList
         filters={filters}
-        setFilters={setFilters} />}
+        setFilters={setFilters}
+        searched={searched}
+        setSearched={setSearched} />}
       />
       <Route path="/ourStory" element={<OurStory
-        setFilters={setFilters} />}
+        setFilters={setFilters}
+        searched={searched}
+        setSearched={setSearched} />}
       />
       <Route path="/shoppingBag" element={<ShoppingBag
         setFilters={setFilters}
@@ -34,20 +42,33 @@ function App() {
         stripeToken={stripeToken}
         setStripeToken={setStripeToken}
         tokenForCompare={tokenForCompare}
-        setTokenForCompare={setTokenForCompare} />}
+        setTokenForCompare={setTokenForCompare}
+        searched={searched}
+        setSearched={setSearched} />}
       />
       <Route path="/product/:id" element={<Product
         setFilters={setFilters}
-        quantity={quantity} />}
+        quantity={quantity}
+        searched={searched}
+        setSearched={setSearched} />}
+      />
+      <Route path="/search" element={<SearchedProducts
+        setFilters={setFilters}
+        searched={searched}
+        setSearched={setSearched} />}
       />
       <Route path="*" element={<NotFound
-        setFilters={setFilters} />}
+        setFilters={setFilters}
+        searched={searched}
+        setSearched={setSearched} />}
       />
       <Route path="/success" element={<PaymentSuccess
         stripeToken={stripeToken}
         setStripeToken={setStripeToken}
         setTokenForCompare={setTokenForCompare}
-        setFilters={setFilters} />}
+        setFilters={setFilters}
+        searched={searched}
+        setSearched={setSearched} />}
       />
     </Routes>
   );
