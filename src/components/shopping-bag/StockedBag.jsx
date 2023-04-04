@@ -2,6 +2,7 @@ import styled from "styled-components";
 import ProductCardBag from "./ProductCardBag";
 import Checkout from './Checkout'
 import { useSelector } from 'react-redux'
+import { v4 as uuidv4 } from 'uuid'
 
 const Container = styled.div`
    width: 100%;
@@ -73,7 +74,7 @@ const StockedBag = ({ quantity, setQuantity, stripeToken, setStripeToken, tokenF
             </HeadingText>
             <MainContent>
                <Left>
-                  {cart.products.map(product => <ProductCardBag key={product._id} img={product.img[0]} title={product.title} price={product.price} size={product.productSize} quantity={quantity} setQuantity={setQuantity} />)}
+                  {cart.products.map(product => <ProductCardBag key={uuidv4()} quantity={quantity} setQuantity={setQuantity} product={product} />)}
                </Left>
                <Right>
                   <Checkout stripeToken={stripeToken} setStripeToken={setStripeToken} tokenForCompare={tokenForCompare} setTokenForCompare={setTokenForCompare} />

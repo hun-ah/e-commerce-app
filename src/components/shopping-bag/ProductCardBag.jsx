@@ -1,6 +1,8 @@
 import styled from "styled-components"
 import { AiOutlineClose } from 'react-icons/ai'
 import QtyCounter from "./QtyCounter"
+import { useDispatch } from 'react-redux'
+import { removeProduct } from '../../redux/cartRedux'
 
 const Container = styled.div`
    width: 100%;
@@ -80,26 +82,34 @@ const Divider = styled.div`
    margin: 24px 0px;
 `
 
-const ProductCardBag = ({ img, title, price, size, quantity, setQuantity }) => {
+const ProductCardBag = ({ product, quantity, setQuantity }) => {
+   const dispatch = useDispatch()
+
+   const handleRemoveProduct = (e) => {
+      dispatch(removeProduct(product))
+      console.log(product)
+   }
+
    return (
       <Container>
          <Divider></Divider>
          <ProductContainer>
             <Left style={{ flex: 0.5 }}>
                <ContainerSection>
-                  <ProductImg img={img}></ProductImg>
+                  <ProductImg img={product.img}></ProductImg>
                </ContainerSection>
             </Left>
             <Right style={{ flex: 2 }}>
                <ContainerSection>
-                  <h4>{title}</h4>
+                  <h4>{product.title}</h4>
                   <AiOutlineClose
+                     onClick={(e) => handleRemoveProduct(e)}
                      style={{ cursor: 'pointer', height: '17px', width: '17px', position: 'absolute', right: '0' }} />
-                  <h6>Size: {size}</h6>
+                  <h6>Size: {product.productSize}</h6>
                </ContainerSection>
                <ContainerSection style={{ justifyContent: 'space-between' }}>
                   {/* <QtyCounter quantity={quantity} setQuantity={setQuantity} /> */}
-                  <h5>${price}</h5>
+                  <h5>${product.price}</h5>
                </ContainerSection>
             </Right>
          </ProductContainer>
