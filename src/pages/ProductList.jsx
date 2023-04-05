@@ -87,12 +87,19 @@ const Products = styled.div`
    margin-bottom: calc(104px - 20px);
 `
 
+const NoMatch = styled.span`
+   font-family: 'Poppins', sans-serif;
+   margin-top: 20px;
+`
+
 const ProductList = ({ filters, setFilters, searched, setSearched }) => {
    const location = useLocation()
    const category = location.pathname.split('/')[2]
    const [sortBy, setSortedBy] = useState('newest')
    const [products, setProducts] = useState([])
    const [filteredProducts, setFilteredProducts] = useState([])
+
+   const [loading, setLoading] = useState(true)
 
    const handleFilters = (e) => {
       const { value, name } = e.target
@@ -108,6 +115,7 @@ const ProductList = ({ filters, setFilters, searched, setSearched }) => {
             const res = await fetch(category === 'all' ? `http://localhost:5000/api/product/findAll` : `http://localhost:5000/api/product/findAll?category=${category}`)
             const data = await res.json()
             setProducts(data)
+            setLoading(false)
          } catch (err) {
             console.log(err)
          }
@@ -175,9 +183,17 @@ const ProductList = ({ filters, setFilters, searched, setSearched }) => {
                   </Filter>
                </Filters>
                <Products>
-                  {filteredProducts.map(obj => {
-                     return <ProductCard key={obj._id} id={obj._id} title={obj.title} price={obj.price} category={obj.category} img={obj.img} size={obj.size} />
-                  })}
+                  {loading ? (
+                     null
+                  ) : (
+                     filteredProducts.length >= 1 ? (
+                        filteredProducts.map(obj => {
+                           return <ProductCard key={obj._id} id={obj._id} title={obj.title} price={obj.price} category={obj.category} img={obj.img} size={obj.size} />
+                        })
+                     ) : (
+                        <NoMatch>Sorry, no products currently match that filter</NoMatch>
+                     )
+                  )}
                </Products>
             </ProductSection>
          </Container>
