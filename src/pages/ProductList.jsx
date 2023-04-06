@@ -10,13 +10,13 @@ const Container = styled.div`
    width: 100%;
    min-height: 100vh;
    display: flex;
-   /* justify-content: center; */
 `
 
 const ProductSection = styled.section`
    width: 100%;
    display: flex;
    flex-direction: column;
+   margin: 0 auto;
 
    @media screen and (min-width: 1500px){
       width: 1500px;
@@ -184,7 +184,7 @@ const ProductList = ({ filters, setFilters, searched, setSearched }) => {
                </Filters>
                <Products>
                   {loading ? (
-                     null
+                     <span></span>
                   ) : (
                      filteredProducts.length >= 1 ? (
                         filteredProducts.map(obj => {
