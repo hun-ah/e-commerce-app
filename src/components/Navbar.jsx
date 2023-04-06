@@ -163,6 +163,7 @@ const Navbar = ({ setFilters, searched, setSearched }) => {
    const productSearch = (e) => {
       e.preventDefault()
       fetchData()
+      setSearch('')
       navigate(`/search`)
    }
 
@@ -193,6 +194,7 @@ const Navbar = ({ setFilters, searched, setSearched }) => {
                                  <Input
                                     type='text'
                                     placeholder='Search'
+                                    value={search}
                                     onChange={(e) => setSearch(e.target.value)}
                                  />
                                  <button>
