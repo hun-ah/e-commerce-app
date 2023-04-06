@@ -170,6 +170,7 @@ const MobileNav = ({ setFilters, toggleViewModal, toggleViewSignup, toggleViewLo
    const productSearch = (e) => {
       e.preventDefault()
       fetchData()
+      handleSearchBar()
       navigate(`/search`)
    }
 
