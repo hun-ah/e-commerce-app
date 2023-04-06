@@ -5,6 +5,8 @@ import { useState } from 'react'
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import { AiOutlineSearch } from 'react-icons/ai'
 import { BiShoppingBag } from 'react-icons/bi'
+import { useSelector, useDispatch } from 'react-redux'
+import { searchInput } from '../redux/searchRedux'
 
 const NavContainer = styled.div`
    width: 100%;
@@ -137,6 +139,7 @@ const MobileNav = ({ setFilters, toggleViewModal, toggleViewSignup, toggleViewLo
    const [openBurger, setOpenBurger] = useState(false)
    const location = useLocation().pathname
    const navigate = useNavigate()
+   const dispatch = useDispatch()
 
    document.body.style.overflow = openBurger ? "hidden" : "visible"
 
@@ -162,6 +165,7 @@ const MobileNav = ({ setFilters, toggleViewModal, toggleViewSignup, toggleViewLo
          const res = await fetch(`http://localhost:5000/api/product/search/${search}`)
          const data = await res.json()
          setSearched(data)
+         dispatch(searchInput(search))
       } catch (err) {
          console.log(err)
       }
@@ -170,6 +174,7 @@ const MobileNav = ({ setFilters, toggleViewModal, toggleViewSignup, toggleViewLo
    const productSearch = (e) => {
       e.preventDefault()
       fetchData()
+      setSearch('')
       handleSearchBar()
       navigate(`/search`)
    }
@@ -217,6 +222,7 @@ const MobileNav = ({ setFilters, toggleViewModal, toggleViewSignup, toggleViewLo
                   <Input
                      type='text'
                      placeholder="Search"
+                     value={search}
                      onChange={(e) => setSearch(e.target.value)}
                   />
                </form>
