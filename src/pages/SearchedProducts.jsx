@@ -5,6 +5,7 @@ import Footer from "../components/Footer"
 import ProductCard from "../components/product-list/ProductCard"
 import CategorySlider from "../components/homepage/CategorySlider"
 import { AiOutlineSearch } from 'react-icons/ai'
+import { useSelector } from 'react-redux'
 
 const Container = styled.div`
    width: 100%;
@@ -58,6 +59,8 @@ const SearchMsg = styled.h1`
 `
 
 const SearchedProducts = ({ searched, setSearched, setFilters }) => {
+   const searchedProduct = useSelector(state => state.search)
+   console.log(searchedProduct)
    return (
       <>
          <Navbar setFilters={setFilters} searched={searched} setSearched={setSearched} />
@@ -66,7 +69,7 @@ const SearchedProducts = ({ searched, setSearched, setFilters }) => {
             <ProductSection>
                {Array.isArray(searched) ?
                   <div style={{ position: 'relative', marginTop: '50px', marginBottom: '80px' }}>
-                     <Results>{`Showing results for "${''}"`}</Results>
+                     <Results>{`Showing results for "${searchedProduct.search}"`}</Results>
                      <Products>
                         {searched.map(obj => {
                            return <ProductCard key={obj._id} id={obj._id} title={obj.title} price={obj.price} category={obj.category} img={obj.img} size={obj.size} />
@@ -77,7 +80,7 @@ const SearchedProducts = ({ searched, setSearched, setFilters }) => {
                      <NoResults>
                         <AiOutlineSearch style={{ height: '25px', width: '25px', marginTop: '5px' }} />
                         < SearchMsg >
-                           {searched.msg}
+                           {`${searched.msg} "${searchedProduct.search}"`}
                         </SearchMsg>
                      </NoResults>
                   </Products>

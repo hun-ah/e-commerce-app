@@ -7,7 +7,8 @@ import navText from '../data/navText'
 import LoginSignupBackground from './login-signup/LoginSignupBackground'
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { searchInput } from '../redux/searchRedux'
 
 const NavContainer = styled.div`
    width: 100%;
@@ -120,6 +121,7 @@ const Navbar = ({ setFilters, searched, setSearched }) => {
    const [search, setSearch] = useState('')
    const location = useLocation().pathname
    const navigate = useNavigate()
+   const dispatch = useDispatch()
 
    const toggleViewSignup = (bool) => {
       setViewSignup(bool)
@@ -155,6 +157,7 @@ const Navbar = ({ setFilters, searched, setSearched }) => {
          const res = await fetch(`http://localhost:5000/api/product/search/${search}`)
          const data = await res.json()
          setSearched(data)
+         dispatch(searchInput(search))
       } catch (err) {
          console.log(err)
       }
