@@ -38,6 +38,7 @@ const Section = styled.section`
 `
 
 const StyledLink = styled(Link)`
+     margin-top: 12px;
      text-decoration: none;
      color: #2D2B2B;
      width: fit-content;
