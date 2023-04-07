@@ -186,7 +186,7 @@ const Product = ({ setFilters, quantity, searched, setSearched }) => {
    useEffect(() => {
       const getProduct = async () => {
          try {
-            const res = await fetch(`http://localhost:5000/api/product/find/${id}`)
+            const res = await fetch(`https://e-commerce-api.cyclic.app/api/product/find/${id}`)
             const data = await res.json()
             setProduct(data)
          } catch (err) {

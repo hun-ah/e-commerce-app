@@ -162,7 +162,7 @@ const MobileNav = ({ setFilters, toggleViewModal, toggleViewSignup, toggleViewLo
 
    const fetchData = async () => {
       try {
-         const res = await fetch(`http://localhost:5000/api/product/search/${search}`)
+         const res = await fetch(`https://e-commerce-api.cyclic.app/api/product/search/${search}`)
          const data = await res.json()
          setSearched(data)
          dispatch(searchInput(search))

@@ -112,7 +112,7 @@ const ProductList = ({ filters, setFilters, searched, setSearched }) => {
    useEffect(() => {
       const getProducts = async () => {
          try {
-            const res = await fetch(category === 'all' ? `http://localhost:5000/api/product/findAll` : `http://localhost:5000/api/product/findAll?category=${category}`)
+            const res = await fetch(category === 'all' ? `https://e-commerce-api.cyclic.app/api/product/findAll` : `https://e-commerce-api.cyclic.app/api/product/findAll?category=${category}`)
             const data = await res.json()
             setProducts(data)
             setLoading(false)

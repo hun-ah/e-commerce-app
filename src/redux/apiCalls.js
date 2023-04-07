@@ -3,7 +3,7 @@ import { loginFailure, loginStart, loginSuccess } from "./userRedux"
 export const login = async (dispatch, user) => {
    dispatch(loginStart())
    try {
-      const res = await fetch('http://localhost:5000/api/login', {
+      const res = await fetch('https://e-commerce-api.cyclic.app/api/login', {
          method: 'POST',
          headers: {
             'Content-Type': 'application/json'
