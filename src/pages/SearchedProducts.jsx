@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar"
 import Spacer from "../components/Spacer"
 import Footer from "../components/Footer"
 import ProductCard from "../components/product-list/ProductCard"
+import ProductLoader from "../components/product-list/ProductLoader"
 import CategorySlider from "../components/homepage/CategorySlider"
 import { AiOutlineSearch } from 'react-icons/ai'
 import { useSelector } from 'react-redux'
@@ -59,7 +60,10 @@ const SearchMsg = styled.h1`
 `
 
 const SearchedProducts = ({ searched, setSearched, setFilters }) => {
-   const searchedProduct = useSelector(state => state.search)
+   const searchedProduct = useSelector(state => state.search.search)
+   const loading = useSelector(state => state.search.isLoading)
+
+   console.log(loading)
 
    return (
       <>
@@ -67,24 +71,39 @@ const SearchedProducts = ({ searched, setSearched, setFilters }) => {
          <Spacer />
          <Container>
             <ProductSection>
-               {Array.isArray(searched) ?
+               {loading ?
                   <div style={{ position: 'relative', marginTop: '50px', marginBottom: '80px' }}>
-                     <Results>{`Showing results for "${searchedProduct.search}"`}</Results>
+                     <Results>Loading results...</Results>
                      <Products>
-                        {searched.map(obj => {
-                           return <ProductCard key={obj._id} id={obj._id} title={obj.title} price={obj.price} category={obj.category} img={obj.img} size={obj.size} />
-                        })}
+                        <ProductLoader></ProductLoader>
+                        <ProductLoader></ProductLoader>
+                        <ProductLoader></ProductLoader>
+                        <ProductLoader></ProductLoader>
                      </Products>
-                  </div> :
-                  <Products>
-                     <NoResults>
-                        <AiOutlineSearch style={{ height: '25px', width: '25px', marginTop: '5px' }} />
-                        < SearchMsg >
-                           {`${searched.msg} "${searchedProduct.search}"`}
-                        </SearchMsg>
-                     </NoResults>
-                  </Products>
-               }
+                  </div>
+                  :
+                  <>
+                     {Array.isArray(searched) ?
+                        <div style={{ position: 'relative', marginTop: '50px', marginBottom: '80px' }}>
+                           <>
+                              <Results>{`Showing results for "${searchedProduct}"`}</Results>
+                              <Products>
+                                 {searched.map(obj => {
+                                    return <ProductCard key={obj._id} id={obj._id} title={obj.title} price={obj.price} category={obj.category} img={obj.img} size={obj.size} />
+                                 })}
+                              </Products>
+                           </>
+                        </div> :
+                        <Products>
+                           <NoResults>
+                              <AiOutlineSearch style={{ height: '25px', width: '25px', marginTop: '5px' }} />
+                              < SearchMsg >
+                                 {`${searched.msg} "${searchedProduct}"`}
+                              </SearchMsg>
+                           </NoResults>
+                        </Products>
+                     }
+                  </>}
             </ProductSection>
             {!Array.isArray(searched) && <CategorySlider setFilters={setFilters} />}
          </Container >
