@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+# MERN E-Commerce Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A fullstack MERN application built and desgined for an e-commerce store.
 
-## Available Scripts
+**You can check it out here:** [E-commerce Store](https://e-commerce-hwm.vercel.app/)
 
-In the project directory, you can run:
+**And view the backend code here:** [E-commerce API](https://github.com/hun-ah/e-commerce-api)
 
-### `npm start`
+**To checkout a cart please use the following Stripe card info:**
+- **Card number:** 4242 4242 4242 4242
+- **Expiry:** 1234
+- **CVC:** 123
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+![Screen Shot 2023-04-07 at 7 56 19 PM](https://user-images.githubusercontent.com/103898493/230693891-29bd2729-837d-4624-a2d0-9939608e9beb.png)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## How It's Made:
+**Languages, frameworks and tools used: MongoDB, React, Node js, Express, Redux Toolkit, Stripe and Figma**
 
-### `npm test`
+The aim of this project was to replicate an e-commerce website as closely as possible, using my current skillset. I wanted to put my abilities to the
+test and create a full-stack application using the MERN stack, after recently learning React.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Main goals:
+- create a beautiful, fast and responsive UI with React
+- practice building and thinking in React
+- create a functional application, where a user can browse products and checkout their cart
+- practice back-end skills and build an API to use with the front-end
 
-### `npm run build`
+This project started with wireframing out each page, creating the designs in Figma and laying out/styling the UI. Once I was mostly happy with the way the
+design looked, I started to map out the functionality for each page such as state and routing. I approached this project mostly page by page in terms of
+thinking through the functionality/logic, which caused me more work in the long run and meant I was passing around state more than I would have liked. I 
+decided to implement Redux towards the end of the project, which made things a lot easier but was also a learning curve to understand and implement.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This application uses Stripe as a payment method provider, as I wanted to build some confidence adding a third party payment method to a project.
+Currently, a user can make a payment (in test mode) and get a feel for how the application would work in the real world.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+I referenced a tutorial to create the backend for this application but did much of it myself. I implemented MVC architecture on the back-end and wrote
+many of the methods myself. It's important to me to learn as I build vs. simply copy and pasting from someone else's code.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![Screen Shot 2023-04-08 at 10 32 54 AM](https://user-images.githubusercontent.com/103898493/230726881-5ee3f63f-a0d7-4fd1-b0f7-da4e32555841.png)
 
-### `npm run eject`
+## Optimizations:
+Implementing Redux Toolkit was a huge optimization for this application. Being able to easily add state to any component cleared up a lot of extra code,
+and I could definitely go back and refactor a lot of the initial state I created to use Redux.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+There is some unused code in this project that I have left in case I want to implement it later on. There are also a few details I still need to hammer out
+such as loading states while products are being fetched from the database, registration and login functionality, persisting state and a few minor styling
+issues.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Lessons Learned:
+- stripe implementation
+- how to use styled components
+- utilizing and implementing React Router and Redux Toolkit
+- working with different input types and managing their state
+- how to create a cohesive and functional multi page website and a greater understanding of how to put together a larger/complex application
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![Screen Shot 2023-04-08 at 10 54 31 AM](https://user-images.githubusercontent.com/103898493/230727947-3be849f0-1c7d-4da4-a22e-1cbfb9c60f0c.png)
