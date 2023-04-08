@@ -8,7 +8,7 @@ import LoginSignupBackground from './login-signup/LoginSignupBackground'
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { searchInput } from '../redux/searchRedux'
+import { searchInput, loadingFalse, loadingTrue } from '../redux/searchRedux'
 
 const NavContainer = styled.div`
    width: 100%;
@@ -158,6 +158,7 @@ const Navbar = ({ setFilters, searched, setSearched }) => {
          const data = await res.json()
          setSearched(data)
          dispatch(searchInput(search))
+         dispatch(loadingFalse())
       } catch (err) {
          console.log(err)
       }
@@ -167,6 +168,7 @@ const Navbar = ({ setFilters, searched, setSearched }) => {
       e.preventDefault()
       fetchData()
       setSearch('')
+      dispatch(loadingTrue())
       navigate(`/search`)
    }
 
