@@ -2,6 +2,7 @@ import styled from "styled-components"
 import NavBar from '../components/Navbar'
 import Footer from '../components/Footer'
 import ProductCard from '../components/product-list/ProductCard'
+import ProductLoader from "../components/product-list/ProductLoader"
 import Spacer from "../components/Spacer"
 import { useEffect, useState } from "react"
 import { useLocation } from "react-router-dom"
@@ -98,8 +99,12 @@ const ProductList = ({ filters, setFilters, searched, setSearched }) => {
    const [sortBy, setSortedBy] = useState('newest')
    const [products, setProducts] = useState([])
    const [filteredProducts, setFilteredProducts] = useState([])
-
    const [loading, setLoading] = useState(true)
+   const loadingCards = []
+
+   for (let i = 0; i <= 8; i++) {
+      loadingCards.push(<ProductLoader key={i} />)
+   }
 
    const handleFilters = (e) => {
       const { value, name } = e.target
@@ -184,7 +189,7 @@ const ProductList = ({ filters, setFilters, searched, setSearched }) => {
                </Filters>
                <Products>
                   {loading ? (
-                     <span></span>
+                     loadingCards
                   ) : (
                      filteredProducts.length >= 1 ? (
                         filteredProducts.map(obj => {
