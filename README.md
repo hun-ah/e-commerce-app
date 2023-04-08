@@ -7,10 +7,9 @@ A fullstack MERN application built and desgined for an e-commerce store.
 **And view the backend code here:** [E-commerce API](https://github.com/hun-ah/e-commerce-api)
 
 **To checkout a cart please use the following Stripe card info:**
-
-**Card number:** 4242 4242 4242 4242
-**Expiry:** 1234
-**CVC:** 123
+- **Card number:** 4242 4242 4242 4242
+- **Expiry:** 1234
+- **CVC:** 123
 
 ![Screen Shot 2023-04-07 at 7 56 19 PM](https://user-images.githubusercontent.com/103898493/230693891-29bd2729-837d-4624-a2d0-9939608e9beb.png)
 
@@ -53,3 +52,5 @@ issues.
 - utilizing and implementing React Router and Redux Toolkit
 - working with different input types and managing their state
 - how to create a cohesive and functional multi page website and a greater understanding of how to put together a larger/complex application
+
+![Screen Shot 2023-04-08 at 10 54 31 AM](https://user-images.githubusercontent.com/103898493/230727947-3be849f0-1c7d-4da4-a22e-1cbfb9c60f0c.png)
