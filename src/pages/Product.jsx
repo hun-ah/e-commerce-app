@@ -83,6 +83,39 @@ const ProductImg = styled.div`
    }
 `
 
+const LoadingProductImg = styled.div`
+   background-position: center;
+   background-size: cover;
+   width: 49%;
+   min-height: 590px;
+
+   position: relative;
+   display: flex;
+   background: #e2e2e2;
+  background-image: linear-gradient(to right, #e2e2e2 0%, #ebebeb 20%, #e2e2e2 40%, #e2e2e2 100%);
+  background-repeat: no-repeat;
+  animation-duration: 1s;
+  animation-fill-mode: forwards; 
+  animation-iteration-count: infinite;
+  animation-name: placeholderShimmer;
+  animation-timing-function: linear;
+
+  @keyframes placeholderShimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  
+  100% {
+    background-position: 468px 0; 
+  }
+}
+
+   @media screen and (max-width: 1100px){
+      width: 90%;
+      flex-shrink: 0;
+   }
+`
+
 const TitleInfo = styled.div`
    font-family: 'Poppins', sans-serif;
    display: flex;
@@ -170,10 +203,37 @@ const Overview = styled.div`
    }
 `
 
+const LoadingText = styled.div`
+   height: 100px;
+   width: 100%;
+
+   position: relative;
+   display: flex;
+   background: #e2e2e2;
+  background-image: linear-gradient(to right, #e2e2e2 0%, #ebebeb 20%, #e2e2e2 40%, #e2e2e2 100%);
+  background-repeat: no-repeat;
+  animation-duration: 1s;
+  animation-fill-mode: forwards; 
+  animation-iteration-count: infinite;
+  animation-name: placeholderShimmer;
+  animation-timing-function: linear;
+
+  @keyframes placeholderShimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  
+  100% {
+    background-position: 468px 0; 
+  }
+}
+`
+
 const Product = ({ setFilters, quantity, searched, setSearched }) => {
    const [product, setProduct] = useState({})
    const [productSize, setProductSize] = useState('')
    const [stateId, setStateId] = useState(uuidv4())
+   const [loading, setLoading] = useState(true)
    const location = useLocation().pathname
    const id = location.split('/')[2]
    const dispatch = useDispatch()
@@ -189,6 +249,7 @@ const Product = ({ setFilters, quantity, searched, setSearched }) => {
             const res = await fetch(`https://e-commerce-api.cyclic.app/api/product/find/${id}`)
             const data = await res.json()
             setProduct(data)
+            setLoading(false)
          } catch (err) {
             console.log(err)
          }
@@ -207,7 +268,57 @@ const Product = ({ setFilters, quantity, searched, setSearched }) => {
          <Navbar setFilters={setFilters} searched={searched} setSearched={setSearched} />
          <Spacer />
          <Container>
-            <ProductPage>
+            {loading ?
+               <ProductPage>
+                  <Left>
+                     <LoadingProductImg></LoadingProductImg>
+                     <LoadingProductImg></LoadingProductImg>
+                     <LoadingProductImg></LoadingProductImg>
+                     <LoadingProductImg></LoadingProductImg>
+                  </Left>
+                  <Right>
+                     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', height: '100%' }}>
+                        <LoadingText></LoadingText>
+                        <LoadingText></LoadingText>
+                        <LoadingText></LoadingText>
+                     </div>
+                  </Right>
+               </ProductPage>
+               :
+               <ProductPage>
+                  <Left>
+                     {product.img && product.img.map(img => <ProductImg key={img} img={img}></ProductImg>)}
+                  </Left>
+                  <Right>
+                     <TitleInfo>
+                        <Name>{product.title}</Name>
+                        <Price>{`$${product.price}`}</Price>
+                     </TitleInfo>
+                     <SizesContainer>
+                        <h2>Select a size</h2>
+                        <Sizes>
+                           {product.size && product.size.map(size => {
+                              return <Size key={size} style={productSize === size ? { background: '#2D2B2B', color: '#F9F9F9' } : {}}>
+                                 {size}
+                                 <SizeInput
+                                    type='radio'
+                                    name='size'
+                                    value={size}
+                                    onChange={handleInputChange}
+                                 />
+                              </Size>
+                           })}
+                        </Sizes>
+                     </SizesContainer>
+                     <AddToCart onClick={handleClick} productSize={productSize}>{productSize ? 'Add to cart' : 'Select a size'}</AddToCart>
+                     <Overview>
+                        <h3>Overview</h3>
+                        <p>{product.desc}</p>
+                     </Overview>
+                  </Right>
+               </ProductPage>
+            }
+            {/* <ProductPage>
                <Left>
                   {product.img && product.img.map(img => <ProductImg key={img} img={img}></ProductImg>)}
                </Left>
@@ -238,7 +349,7 @@ const Product = ({ setFilters, quantity, searched, setSearched }) => {
                      <p>{product.desc}</p>
                   </Overview>
                </Right>
-            </ProductPage>
+            </ProductPage> */}
          </Container>
          <Footer />
       </>
