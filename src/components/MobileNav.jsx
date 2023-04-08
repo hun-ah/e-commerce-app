@@ -5,8 +5,8 @@ import { useState } from 'react'
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import { AiOutlineSearch } from 'react-icons/ai'
 import { BiShoppingBag } from 'react-icons/bi'
-import { useDispatch } from 'react-redux'
-import { searchInput } from '../redux/searchRedux'
+import { useSelector, useDispatch } from 'react-redux'
+import { searchInput, loadingFalse, loadingTrue } from '../redux/searchRedux'
 
 const NavContainer = styled.div`
    width: 100%;
@@ -167,6 +167,7 @@ const MobileNav = ({ setFilters, toggleViewModal, toggleViewSignup, toggleViewLo
          const data = await res.json()
          setSearched(data)
          dispatch(searchInput(search))
+         dispatch(loadingFalse())
       } catch (err) {
          console.log(err)
       }
@@ -176,6 +177,7 @@ const MobileNav = ({ setFilters, toggleViewModal, toggleViewSignup, toggleViewLo
       e.preventDefault()
       fetchData()
       setSearch('')
+      dispatch(loadingTrue())
       handleSearchBar()
       navigate(`/search`)
    }
