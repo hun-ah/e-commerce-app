@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import { AiOutlineSearch } from 'react-icons/ai'
 import { BiShoppingBag } from 'react-icons/bi'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { searchInput, loadingFalse, loadingTrue } from '../redux/searchRedux'
 
 const NavContainer = styled.div`
