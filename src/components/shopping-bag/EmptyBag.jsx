@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 const Container = styled.div`
@@ -52,7 +52,6 @@ const StyledLink = styled(Link)`
 `
 
 const EmptyBag = () => {
-   const location = useLocation().pathname
 
    return (
       <Container>
