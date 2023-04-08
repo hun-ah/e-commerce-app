@@ -60,7 +60,7 @@ const SearchMsg = styled.h1`
 
 const SearchedProducts = ({ searched, setSearched, setFilters }) => {
    const searchedProduct = useSelector(state => state.search)
-   console.log(searchedProduct)
+
    return (
       <>
          <Navbar setFilters={setFilters} searched={searched} setSearched={setSearched} />
