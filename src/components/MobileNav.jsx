@@ -77,6 +77,7 @@ const SearchBarContainer = styled.div`
 
 const Input = styled.input`
    font-family: 'Poppins', sans-serif;
+   font-size: 16px;
    position: fixed;
    border: none;
    background: #e7e7e7;
