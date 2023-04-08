@@ -41,8 +41,10 @@ const ProductImg = styled.div`
    min-width: 100%;
    transition: .2s ease-in-out;
 
-   &:hover {
-      opacity: 0.7;
+   @media screen and (min-width: 500px){
+      &:hover {
+         opacity: 0.7;
+      }  
    }
 `
 
