@@ -42,9 +42,11 @@ many of the methods myself. It's important to me to learn as I build vs. simply 
 Implementing Redux Toolkit was a huge optimization for this application. Being able to easily add state to any component cleared up a lot of extra code,
 and I could definitely go back and refactor a lot of the initial state I created to use Redux.
 
+I added loading skeletons to the main product page and individual product pages, as this provides a better user experience and makes the product more
+useable, mitigating any frustrations/confusions about not seeing products before they've been fetched from the DB.
+
 There is some unused code in this project that I have left in case I want to implement it later on. There are also a few details I still need to hammer out
-such as loading states while products are being fetched from the database, registration and login functionality, persisting state and a few minor styling
-issues.
+such as registration and login functionality, persisting state and a few minor styling issues.
 
 ## Lessons Learned:
 - stripe implementation
