@@ -9,13 +9,15 @@ const searchSlice = createSlice({
    reducers: {
       searchInput: (state, action) => {
          state.search = action.payload
-         state.isLoading = true
       },
       loadingFalse: (state) => {
          state.isLoading = false
+      },
+      loadingTrue: (state) => {
+         state.isLoading = true
       }
    }
 })
 
-export const { searchInput } = searchSlice.actions
+export const { searchInput, loadingFalse, loadingTrue } = searchSlice.actions
 export default searchSlice.reducer
