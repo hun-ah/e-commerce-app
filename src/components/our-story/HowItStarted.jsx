@@ -11,7 +11,7 @@ const Section = styled.section`
    font-family: 'Poppins', sans-serif;
    display: flex;
    padding: 0 20px;
-   margin: 140px 0;
+   margin: 104px 0;
    width: 100%;
    gap: 48px;
 
@@ -21,7 +21,6 @@ const Section = styled.section`
 
    @media screen and (max-width: 900px) {
       flex-direction: column;
-      margin: 48px 0;
    }
 `
 
