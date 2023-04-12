@@ -19,6 +19,11 @@ const CardImg = styled.img`
    &:hover {
       opacity: 0.6;
    }
+
+   @media screen and (max-width: 499px){
+      &:hover { opacity: 1;
+      }
+   }
 `
 
 const StyledLink = styled(Link)`
