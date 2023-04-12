@@ -40,8 +40,9 @@ const LoginSignupBackground = ({ viewModal, toggleViewModal, viewLogin, toggleVi
    return (
       <Container
          style={!viewModal ? { display: 'none' } : {}}
+         id='container'
          onClick={(e) => {
-            if (e.target.className === 'sc-cyRfQX fclJcb') {
+            if (e.target.id === 'container') {
                toggleViewModal(false)
                toggleViewSignup(false)
                toggleViewLogin(false)
