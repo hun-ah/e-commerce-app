@@ -124,7 +124,7 @@ const Login = ({ toggleViewLogin, toggleViewSignup }) => {
                />
             </label>
             <SignupButton onClick={handleLogin}>Functionality under construction &#128119;</SignupButton>
-            <p style={{ fontSize: '10px', marginTop: '-16px' }}>*you can still checkout as a guest</p>
+            <p style={{ fontSize: '10px', marginTop: '-10px' }}>*you can still checkout as a guest</p>
          </SignupForm>
          <span>Don't have an account? <Here onClick={() => {
             toggleViewLogin(false)

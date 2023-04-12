@@ -8,7 +8,7 @@ const MainContainer = styled.div`
    width: 60%;
    margin: auto;
    color: #2d2b2b;
-   padding: 30px 0;
+   padding: 90px 0;
 
    & h4 {
       font-size: 24px;
@@ -198,7 +198,7 @@ const Signup = ({ toggleViewLogin, toggleViewSignup }) => {
                <p>Yes, sign me up to the HM&CO newsletter to never miss out on product launches and promotions.</p>
             </Newsletter>
             <SignupButton onClick={(e) => handleClick(e)}>Functionality under construction &#128119;</SignupButton>
-            <p style={{ fontSize: '10px', marginTop: '-16px' }}>*you can still checkout as a guest</p>
+            <p style={{ fontSize: '10px', marginTop: '-10px' }}>*you can still checkout as a guest</p>
          </SignupForm>
          <span>Already have an account? <Here onClick={() => {
             toggleViewLogin(true)
