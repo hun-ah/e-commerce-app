@@ -59,6 +59,12 @@ const CheckoutButton = styled.button`
    cursor: pointer;
 `
 
+const StripeInfo = styled.span`
+   display: inline-block;
+   font-size: 10px;
+   margin-top: 20px;
+`
+
 const Checkout = ({ stripeToken, setStripeToken, tokenForCompare, setTokenForCompare }) => {
    const total = useSelector(state => state.cart.total)
    const shipping = total < 1 ? 0 : 10
@@ -116,6 +122,7 @@ const Checkout = ({ stripeToken, setStripeToken, tokenForCompare, setTokenForCom
                stripeKey={KEY}
             >
                <CheckoutButton>Checkout</CheckoutButton>
+               <StripeInfo>*To checkout, please use stripe card: 4242 4242 4242 4242, Expiry: 1234 and CVC: 123</StripeInfo>
             </StripeCheckout>
          </Bottom>
       </Container>
