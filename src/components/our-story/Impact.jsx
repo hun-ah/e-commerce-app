@@ -25,10 +25,18 @@ const Section = styled.section`
       line-height: 125%;
       letter-spacing: -0.03em;
       color: #F9F9F9;
-   }
 
+   }
+   
    @media screen and (min-width: 1500px) {
       width: 1500px;
+   }
+   
+   @media screen and (max-width: 800px){
+      & h3 {
+         font-size: 24px;
+         line-height: 36px;
+      }
    }
 `
 
